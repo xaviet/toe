@@ -2,15 +2,15 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <SchemaVersion>2.0</SchemaVersion>
-    <ProjectGuid>6ca96981-c3cc-4444-9d51-9c631ac98aff</ProjectGuid>
+    <ProjectGuid>cc655bf5-972c-4a41-8f79-93b530cc7ba0</ProjectGuid>
     <ProjectHome>.</ProjectHome>
-    <StartupFile>toe.py</StartupFile>
+    <StartupFile>commonlib.py</StartupFile>
     <SearchPath>
     </SearchPath>
     <WorkingDirectory>.</WorkingDirectory>
     <OutputPath>.</OutputPath>
-    <Name>toe</Name>
-    <RootNamespace>toe</RootNamespace>
+    <Name>commonlib</Name>
+    <RootNamespace>commonlib</RootNamespace>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)' == 'Debug' ">
     <DebugSymbols>true</DebugSymbols>
@@ -21,7 +21,16 @@
     <EnableUnmanagedDebugging>false</EnableUnmanagedDebugging>
   </PropertyGroup>
   <ItemGroup>
-    <Compile Include="toe.py" />
+    <Compile Include="ann.py" />
+    <Compile Include="commonlib.py" />
+    <Compile Include="mail.py" />
+    <Compile Include="mailserver.py" />
+    <Compile Include="sqlt3.py" />
+    <Compile Include="__init__.py" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="py.h" />
+    <Content Include="requirements.txt" />
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)\Python Tools\Microsoft.PythonTools.targets" />
   <!-- Uncomment the CoreCompile target to enable the Build command in
