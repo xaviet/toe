@@ -15,7 +15,7 @@ SLLNAME = $(LIBOUTPATH)$(LIBNAME).a
 SYSTEMPATH = /data/data/com.termux/files/usr/
 LDFLAGS = -lpthread -ldl -L$(SYSTEMPATH)lib -lpython3.6m
 CFLAGS = -Wall -v -g -I../commonlib -I$(SYSTEMPATH)include/python3.6m
-EXTLIB = -L../output -l:$(SLLNAME)
+EXTLIB = -L./output -l:$(LIBNAME).a
 CC = gcc $(CFLAGS) $(LDFLAGS)
 # app source
 APPNAME = toelinux
@@ -25,7 +25,7 @@ APPOBJECT = $(APPNAME).o
 # command
 lib:	$(DLLNAME)
 $(DLLNAME):	$(LIBOBJECT)
-	$(CC) $(LIBOBJECT) -o $(DLLNAME)
+	$(LIBCC) $(LIBOBJECT) -o $(DLLNAME)
 	$(LIBCREATE) $(SLLNAME) $(LIBOBJECT)
 
 

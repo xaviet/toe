@@ -6,7 +6,7 @@ by pioevh@163.com 20170516
 #include "stdio.h"
 #include "stdarg.h"
 #include "toelinux.h"
-#include "..\commonlib\py.h"
+#include "py.h"
 
 int main()
 {
