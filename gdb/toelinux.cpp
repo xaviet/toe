@@ -17,5 +17,10 @@ int hello()
 int main()
 {
   hello();
+  int a = 1;
+  while (1)
+  {
+    a = 0;
+  }
   return(0);
 }
