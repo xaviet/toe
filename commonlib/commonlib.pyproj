@@ -21,14 +21,15 @@
     <EnableUnmanagedDebugging>false</EnableUnmanagedDebugging>
   </PropertyGroup>
   <ItemGroup>
-    <Compile Include="ann.py" />
+    <Compile Include="nnlib.py" />
     <Compile Include="commonlib.py" />
-    <Compile Include="mail.py" />
+    <Compile Include="maillib.py" />
     <Compile Include="mailserver.py" />
-    <Compile Include="sqlt3.py" />
+    <Compile Include="sqlite3lib.py" />
     <Compile Include="__init__.py" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="log.txt" />
     <Content Include="py.h" />
     <Content Include="requirements.txt" />
   </ItemGroup>

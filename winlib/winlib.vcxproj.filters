@@ -15,8 +15,9 @@
     </Filter>
   </ItemGroup>
   <ItemGroup>
-    <None Include="__init__.py" />
-    <None Include="winlib.py" />
+    <ClCompile Include="winlib.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="winlib.h">
@@ -24,8 +25,6 @@
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="winlib.cpp">
-      <Filter>源文件</Filter>
-    </ClCompile>
+    <None Include="winlib.py" />
   </ItemGroup>
 </Project>

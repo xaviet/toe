@@ -4,7 +4,7 @@
   orangepiserver.py
 '''
 
-import mail
+import maillib
 import os
 import commonlib
 import time
@@ -15,7 +15,7 @@ def main():
     try:
       pass
       t_rx = []
-      t_rx = mail.mbSRx()
+      t_rx = maillib.mbSRx()
     except Exception as e:
       pass
       commonlib.msg(str(e))
@@ -28,7 +28,7 @@ def main():
         t_cmd = os.popen(t_el1)
         t_rt = t_rt + '[# {0}]\n{1}\n'.format(t_el1, t_cmd.read())
       print(t_rt)
-      mail.mbS2CSend(t_rt)
+      maillib.mbS2CSend(t_rt)
     time.sleep(256)
 
 

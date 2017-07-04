@@ -1,0 +1,8 @@
+[windows dll compile]
+dll
+precompiled_header = None
+subsystem = /SUBSYSTEM:WINDOWS
+entry = None
+
+[termux screen keys]
+'volume+' + 'q'

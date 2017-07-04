@@ -14,9 +14,9 @@ import commonlib
 
 def callLibC():
   '''
-    Windows: '..{0}x64{0}Release{0}winlib.dll'.format(os.sep)
+    Windows: '..{0}x64{0}Release{0}libwin.dll'.format(os.sep)
   '''
-  dllPath = '..{0}x64{0}Release{0}winlib.dll'.format(os.sep)
+  dllPath = '..{0}x64{0}Release{0}libwin.dll'.format(os.sep)
   return (ctypes.CDLL(dllPath))
 
 
