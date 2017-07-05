@@ -16,6 +16,7 @@ int hello()
 
 int main()
 {
+  printf("starting\n");
   hello();
   int a = 1;
   while (1)
