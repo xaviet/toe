@@ -21,6 +21,10 @@
     <EnableUnmanagedDebugging>false</EnableUnmanagedDebugging>
   </PropertyGroup>
   <ItemGroup>
+    <Compile Include="ex.py">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="mtpltlib.py" />
     <Compile Include="nnlib.py" />
     <Compile Include="commonlib.py" />
     <Compile Include="maillib.py" />

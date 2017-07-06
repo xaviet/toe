@@ -6,3 +6,6 @@ entry = None
 
 [termux screen keys]
 'volume+' + 'q'
+make lib
+make app
+make clean

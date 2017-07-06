@@ -19,9 +19,7 @@ int main()
   printf("starting\n");
   hello();
   int a = 1;
-  while (1)
-  {
-    a = 0;
-  }
+  printf("ending %d\n",a);
+  scanf("%d", &a);
   return(0);
 }
