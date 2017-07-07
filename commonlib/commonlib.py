@@ -12,13 +12,17 @@ import platform
 import sys
 import os
 import ctypes
-
+import multiprocessing
 
 def pyFormat(path):
   '''
     yapf -r -i -p d:\code\toe --style="{based_on_style:pep8, column_limit:96, indent_width:2}"
   '''
   pass
+
+
+def getCpus():
+  return(multiprocessing.cpu_count())
 
 
 def getSystem():
