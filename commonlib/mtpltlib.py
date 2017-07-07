@@ -9,11 +9,12 @@
 import numpy as np
 import matplotlib.pyplot as plt
 import matplotlib.animation as animation
+import random
 
 
 def main():
-  a=[i for i in range(16)]
-  b=[i * i - i ** 1.5 for i in a ]
+  a=[i for i in range(256)]
+  b=[random.random() for i in a ]
   plt.plot(a,b)
   plt.show()
 

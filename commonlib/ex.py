@@ -1,25 +1,32 @@
+# /usr/bin/python3
+# -*- coding: utf-8 -*-
 
-import numpy as np
-import matplotlib.pyplot as plt
-import matplotlib.animation as animation
+import traceback
+from snack import *
+ 
+def window(screen):
+  btn1=Button('B1')  #实例化一个按钮组件
+  btn2=Button('B2')  #实例化一个按钮组件
+  g=Grid(2,1)   #实例化一个两列，一行的网格
+  g.setField(btn1,0,0)  #把组件填充到网格中
+  g.setField(btn2,1,0)
+  screen.gridWrappedWindow(g,'Windows')
+  f=Form()  #实例化一个form
+  f.add(g)    #把网格填充到form
+  result=f.run()
+  screen.popWindow()
+  btn1.setCallback() 
+  btn2.setCallback() 
 
+def main():
+  try:
+    screen=SnackScreen()  #实例化一个snack界面
+    window(screen)
+  except:
+    print(traceback.format_exc())
+  finally:
+    screen.finish()  #关闭snack界面
+    return('')
 
-fig, ax = plt.subplots()
-
-x = np.arange(0, 2*np.pi, 0.01)
-line, = ax.plot(x, np.sin(x))
-
-
-def animate(i):
-    line.set_ydata(np.sin(x + i/10.0))  # update the data
-    return line,
-
-
-# Init only required for blitting to give a clean slate.
-def init():
-    line.set_ydata(np.ma.array(x, mask=True))
-    return line,
-
-ani = animation.FuncAnimation(fig, animate, np.arange(1, 200), init_func=init,
-                              interval=25, blit=True)
-plt.show()
+if(__name__=='__main__'):
+  main()

@@ -4,8 +4,8 @@ by pioevh@163.com 20170516
 */
 
 #include "stdio.h"
-#include "toelinux.hpp"
-
+#include "toelinux.h"
+#include "interfacepasslib.h"
 
 int hello()
 {
@@ -14,12 +14,14 @@ int hello()
 }
 
 
-int main()
+int main(int argc, char** argv)
 {
   printf("starting\n");
   hello();
   int a = 1;
-  printf("ending %d\n",a);
+  printf("ending %d\n", a);
   scanf("%d", &a);
+  printf("ending %d\n", a);
+  maintest(argc, argv);
   return(0);
 }

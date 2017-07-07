@@ -70,10 +70,14 @@
     <TargetExt>.out</TargetExt>
   </PropertyGroup>
   <ItemGroup>
-    <ClCompile Include="toelinux.cpp" />
+    <ClCompile Include="toelinux.c" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="toelinux.hpp" />
+    <ClInclude Include="interfacepasslib.h" />
+    <ClInclude Include="toelinux.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Makefile" />
   </ItemGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
     <ClCompile>
@@ -90,6 +94,9 @@
       <StrictAliasing />
       <OmitFramePointers />
     </ClCompile>
+    <Link>
+      <LibraryDependencies>pthread </LibraryDependencies>
+    </Link>
   </ItemDefinitionGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets" />
