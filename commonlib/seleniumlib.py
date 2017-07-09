@@ -16,7 +16,7 @@ def main():
   sys.path.append('{0}firefox.exe'.format(ffPath))
   driver = webdriver.Firefox()
   driver.maximize_window()
-  driver.get('http://www.bing.com')
+  driver.get('http://www.lfd.uci.edu/~gohlke/pythonlibs/')
   elem = driver.find_element_by_tag_name('p')
   print(elem)
   elem.clear()
