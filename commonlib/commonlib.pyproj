@@ -27,6 +27,9 @@
     <Compile Include="ex.py">
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="ffnetlib.py">
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Include="mtpltlib.py" />
     <Compile Include="pydifflib.py">
       <SubType>Code</SubType>
@@ -42,6 +45,9 @@
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="sqlite3lib.py" />
+    <Compile Include="zipfilelib.py">
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Include="__init__.py" />
   </ItemGroup>
   <ItemGroup>
