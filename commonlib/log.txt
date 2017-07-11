@@ -19,3 +19,5 @@ C:\Program Files\Python36
 graphviz-2.38.zip
 add system path
 be Required by pygraphviz and networkx 
+64bit system 
+modify PyIOBase_Type code
