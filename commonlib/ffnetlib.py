@@ -23,5 +23,5 @@ answer = net( [ 0., 0. ] )
 partial_derivatives = net.derivative( [ 0., 0. ] )
 
 
-NX.draw(net.graph, prog='dot')
+NX.draw_graphviz(net.graph, prog='dot')
 pylab.show()
