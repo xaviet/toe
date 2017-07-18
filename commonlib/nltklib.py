@@ -7,7 +7,7 @@
 
 
 import nltk
-# nltk.download()
+# data ready by nltk.download()
 
 def test():
   pass
