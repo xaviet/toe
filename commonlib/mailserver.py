@@ -29,7 +29,7 @@ def test():
         t_rt = t_rt + '[# {0}]\n{1}\n'.format(t_el1, t_cmd.read())
       print(t_rt)
       maillib.mbS2CSend(t_rt)
-    time.sleep(256)
+    time.sleep(128)
 
 
 if (__name__ == '__main__'):
