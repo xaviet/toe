@@ -1,4 +1,4 @@
-#!python
+#! python
 # coding=utf-8
 '''
   libwin.py
@@ -27,9 +27,12 @@ def getCh():
   return (chr(callLibC().getCh()))
 
 
-if (__name__ == '__main__'):
-  pass
+def test():
   doctest.testmod()
   lib = callLibC()
   print(lib.subtract(127, 255))
   print(getCh())
+
+
+if (__name__ == '__main__'):
+  test()

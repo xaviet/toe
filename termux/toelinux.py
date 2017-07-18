@@ -1,4 +1,4 @@
-#!python
+#! /usr/bin/python3
 # coding=utf-8
 '''
   toelinux.py
@@ -12,7 +12,12 @@ import commonlib
 sys.path.append('..{0}toelinux'.format(os.sep))
 import liblinux
 
-if (__name__ == '__main__'):
+
+def test():
   print(commonlib.getSystem())
   print(liblinux.getCh())
   print(liblinux.callLibC().callC())
+
+
+if (__name__ == '__main__'):
+  test()

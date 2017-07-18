@@ -1,4 +1,4 @@
-#!python
+#! /usr/bin/python3
 # coding=utf-8
 '''
   annlib.py
@@ -31,11 +31,14 @@ class neuron(unitCell):
     self.dendrite.append(lastLayerNeuron)
     self.dendriteWeight.append(random.uniform(-1, 1))
 
-  def createSynapse(self,nextLayerNeuron):
+  def createSynapse(self, nextLayerNeuron):
     nextLayerNeuron.setDendrite(self)
 
   def activation(self):
-    return (sum(list(map(lambda x, y: x.axon * y, self.dendrite, self.dendriteWeight))))
+    return (sum(
+        list(
+            map(lambda x, y: x.axon * y, self.dendrite,
+                self.dendriteWeight))))
 
   @property
   def axon(self):
@@ -75,41 +78,43 @@ def test():
       (neuronNumber - neuronsHideLayer) % 2)
   hideLayer = []
   for i in range(hideLayersNumber):
-    hideLayer.append(cells[i * neuronsPerHideLayer:(i + 1) * neuronsPerHideLayer])
-  InputLayer = cells[neuronsHideLayer:neuronsHideLayer + neuronsInputLayer]
+    hideLayer.append(
+        cells[i * neuronsPerHideLayer:(i + 1) * neuronsPerHideLayer])
+  InputLayer = cells[neuronsHideLayer:
+                     neuronsHideLayer + neuronsInputLayer]
   OutputLayer = cells[neuronsHideLayer + neuronsInputLayer:]
-  print(neuronNumber, len(InputLayer), len(OutputLayer), dendriteNumber * 4 * 8)
+  print(neuronNumber,
+        len(InputLayer), len(OutputLayer), dendriteNumber * 4 * 8)
   sharedValue['running'] = False
   return (cells)
+
 
 import numpy as np
 if (__name__ == '__main__'):
   #test()
-  X = np.array([ [0,0,1],[0,1,1],[1,0,1],[1,1,1] ])
-  y = np.array([[0,1,1,0]]).T
-  syn0 = 2*np.random.random((3,4)) - 1
-  syn1 = 2*np.random.random((4,1)) - 1
+  X = np.array([[0, 0, 1], [0, 1, 1], [1, 0, 1], [1, 1, 1]])
+  y = np.array([[0, 1, 1, 0]]).T
+  syn0 = 2 * np.random.random((3, 4)) - 1
+  syn1 = 2 * np.random.random((4, 1)) - 1
   for j in range(60):
-    l1 = 1/(1+np.exp(-(np.dot(X,syn0))))
-    l2 = 1/(1+np.exp(-(np.dot(l1,syn1))))
-    l2_delta = (y - l2)*(l2*(1-l2))
-    l1_delta = l2_delta.dot(syn1.T) * (l1 * (1-l1))
+    l1 = 1 / (1 + np.exp(-(np.dot(X, syn0))))
+    l2 = 1 / (1 + np.exp(-(np.dot(l1, syn1))))
+    l2_delta = (y - l2) * (l2 * (1 - l2))
+    l1_delta = l2_delta.dot(syn1.T) * (l1 * (1 - l1))
     syn1 += l1.T.dot(l2_delta)
     syn0 += X.T.dot(l1_delta)
-  c=0
-  nc=0
-  j=1
-  while(True):
-    a=random.randint(1,3)
-    s=random.randint(1,3)
-    if(a==s):
-      nc+=1
+  c = 0
+  nc = 0
+  j = 1
+  while (True):
+    a = random.randint(1, 3)
+    s = random.randint(1, 3)
+    if (a == s):
+      nc += 1
     else:
-      c+=1
-    print(j,c/j,nc/j)
-    j+=1
-
-
+      c += 1
+    print(j, c / j, nc / j)
+    j += 1
 '''
 import math  
 import random  
@@ -298,4 +303,3 @@ class NN:
 if(__name__ == '__main__'):
   pass
 '''
-

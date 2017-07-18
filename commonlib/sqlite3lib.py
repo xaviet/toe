@@ -1,8 +1,9 @@
-#!python
+#! /usr/bin/python3
 # coding=utf-8
 '''
-  sqlt3.py
+  sqlt3lib.py
 '''
+
 import sqlite3
 
 
@@ -65,12 +66,12 @@ def test():
   md.opt('create table t(id int)')
   md.opt('insert into t(id) values(11)')
   print(md.opt('select * from t')[0])
-  md.batch(('insert into t(id) values(211)', 'insert into t(id) values(1211)',
+  md.batch(('insert into t(id) values(211)',
+            'insert into t(id) values(1211)',
             'insert into t(id) values(11211)'))
   print(md.opt('select * from t'))
   md.closeDb()
 
 
 if (__name__ == '__main__'):
-  pass
   test()

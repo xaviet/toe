@@ -1,4 +1,4 @@
-#!python
+#! /usr/bin/python3
 # coding=utf-8
 '''
   liblinux.py
@@ -40,5 +40,9 @@ def getCh():
   return (ch)
 
 
-if (__name__ == '__main__'):
+def test():
   print(getCh())
+
+
+if (__name__ == '__main__'):
+  test()

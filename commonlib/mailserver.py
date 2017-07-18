@@ -1,4 +1,4 @@
-#!python
+#! /usr/bin/python3
 # coding=utf-8
 '''
   orangepiserver.py
@@ -10,7 +10,7 @@ import commonlib
 import time
 
 
-def main():
+def test():
   while (True):
     try:
       pass
@@ -33,4 +33,4 @@ def main():
 
 
 if (__name__ == '__main__'):
-  main()
+  test()

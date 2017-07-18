@@ -1,4 +1,4 @@
-#!python
+#! /usr/bin/python3
 # coding=utf-8
 '''
   mail.py
@@ -102,7 +102,8 @@ def mbRx(v_mb, v_pp, v_keyString):
         t_mContent.append(t_line)
       if (t_line == 'c/s %s 0' % (v_keyString, )):
         t_contentFlag = True
-      if ((t_mContent != []) and (t_line == 'c/s %s 1' % (v_keyString, ))):
+      if ((t_mContent != [])
+          and (t_line == 'c/s %s 1' % (v_keyString, ))):
         t_rt.append(t_mContent[:-1])
         t_contentFlag = False
     t_mb.dele(i)
@@ -146,8 +147,7 @@ def mbSRx():
   return (mbRx(getMbInner(), getPp(), 'client'))
 
 
-if (__name__ == '__main__'):
-  pass
+def test():
   mbC2SSend('dir\nipconfig')
   time.sleep(1)
   t_rx = mbCRx()
@@ -156,3 +156,7 @@ if (__name__ == '__main__'):
   for t_el0 in t_rx:
     for t_el1 in t_el0:
       print(t_el1)
+
+
+if (__name__ == '__main__'):
+  test()

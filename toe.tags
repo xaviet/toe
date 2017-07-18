@@ -4,46 +4,42 @@
 !_TAG_PROGRAM_NAME	Exuberant Ctags	//
 !_TAG_PROGRAM_URL	http://ctags.sourceforge.net	/official site/
 !_TAG_PROGRAM_VERSION	5.8	//
-a	./commonlib/annlib.py	103;"	variable
+a	./commonlib/annlib.py	110;"	variable
 activation	./commonlib/annlib.py	37;"	member	class:neuron
-animation	./commonlib/mtpltlib.py	11;"	namespace
-answer	./commonlib/ffnetlib.py	22;"	variable
+animation	./commonlib/mtpltlib.py	10;"	namespace
 APPNAME	./gdb/Makefile	8;"	macro
 APPNAME	./termux/Makefile	21;"	macro
 APPOBJECT	./termux/Makefile	22;"	macro
-axon	./commonlib/annlib.py	41;"	member	class:neuron
-batch	./commonlib/sqlite3lib.py	51;"	member	class:sqliteMemory
-bias_variable	./commonlib/tensorflowlib.py	72;"	function	function:ex2
-c	./commonlib/annlib.py	99;"	variable
+axon	./commonlib/annlib.py	44;"	member	class:neuron
+batch	./commonlib/sqlite3lib.py	52;"	member	class:sqliteMemory
+c	./commonlib/annlib.py	106;"	variable
 callC	./termux/liblinux.c	26;"	function
 callC	./termux/liblinux.h	13;"	prototype	signature:()
 callC	./termux/toelinux.h	11;"	prototype	signature:()
 callLibC	./termux/liblinux.py	15;"	function
-callLibC	./toe/toe.py	28;"	function
+callLibC	./toe/toe.py	20;"	function
 callLibC	./winlib/winlib.py	15;"	function
-cBoard	./toe/toe.py	33;"	class
+cBoard	./toe/toe.py	25;"	class
 CC	./gdb/Makefile	4;"	macro
 CC	./termux/Makefile	19;"	macro
 CFLAGS	./gdb/Makefile	3;"	macro
 CFLAGS	./termux/Makefile	17;"	macro
-clean	./commonlib/zipfilelib.py	30;"	function
-closeDb	./commonlib/sqlite3lib.py	59;"	member	class:sqliteMemory
+clean	./commonlib/zipfilelib.py	31;"	function
+closeDb	./commonlib/sqlite3lib.py	60;"	member	class:sqliteMemory
 commonlib	./commonlib/annlib.py	12;"	namespace
 commonlib	./commonlib/maillib.py	13;"	namespace
 commonlib	./commonlib/mailserver.py	9;"	namespace
-commonlib	./commonlib/tensorflowlib.py	10;"	namespace
+commonlib	./commonlib/seleniumlib.py	7;"	namespace
 commonlib	./termux/liblinux.py	12;"	namespace
 commonlib	./termux/toelinux.py	11;"	namespace
 commonlib	./toe/toe.py	12;"	namespace
 commonlib	./winlib/winlib.py	12;"	namespace
 conec	./commonlib/ex.py	5;"	variable
-conec	./commonlib/ffnetlib.py	13;"	variable
-conv2d	./commonlib/tensorflowlib.py	76;"	function	function:ex2
 createFrameBUffer	./gdb/interfacepasslib.h	216;"	function	signature:()
 createSocket	./gdb/interfacepasslib.h	188;"	function	signature:(char* vp_buffNICName, char* v_nic, uint8_t* v_dAddr)
 createSynapse	./commonlib/annlib.py	34;"	member	class:neuron
 createThread	./gdb/interfacepasslib.h	335;"	function	signature:(void* vp_function, struct s_frameBuffer* vp_frameBuffer)
-crypto	./commonlib/commonlib.py	109;"	function
+crypto	./commonlib/commonlib.py	114;"	function
 crypto	./commonlib/maillib.py	14;"	namespace
 CtoeApp	./toe/toe.cpp	23;"	function	class:CtoeApp	signature:()
 CtoeApp	./toe/toe.h	18;"	class
@@ -54,7 +50,7 @@ CtoeDlg	./toe/toeDlg.h	9;"	class
 ctypes	./commonlib/commonlib.py	14;"	namespace
 ctypes	./termux/liblinux.py	8;"	namespace
 ctypes	./winlib/winlib.py	8;"	namespace
-decoratorFun	./commonlib/commonlib.py	41;"	function	function:spentTime
+decoratorFun	./commonlib/commonlib.py	42;"	function	function:spentTime
 DEF_1stNIC	./gdb/interfacepasslib.h	32;"	macro
 DEF_2ndNIC	./gdb/interfacepasslib.h	33;"	macro
 DEF_delayTime	./gdb/interfacepasslib.h	34;"	macro
@@ -63,9 +59,9 @@ DEF_frameSize	./gdb/interfacepasslib.h	28;"	macro
 DEF_namedSize	./gdb/interfacepasslib.h	27;"	macro
 DEF_timeAccurSec	./gdb/interfacepasslib.h	30;"	macro
 DEF_timeAccurUSec	./gdb/interfacepasslib.h	31;"	macro
-detectCharSet	./commonlib/commonlib.py	93;"	function
+detectCharSet	./commonlib/commonlib.py	95;"	function
 detectCharSet	./commonlib/maillib.py	14;"	namespace
-discriminator	./toe/toe.py	40;"	member	class:cBoard
+discriminator	./toe/toe.py	32;"	member	class:cBoard
 DLLAPI	./winlib/winlib.h	14;"	macro
 DLLNAME	./termux/Makefile	10;"	macro
 doctest	./commonlib/commonlib.py	7;"	namespace
@@ -75,54 +71,48 @@ doctest	./toe/toe.py	7;"	namespace
 doctest	./winlib/winlib.py	7;"	namespace
 DoDataExchange	./toe/toeDlg.cpp	30;"	function	class:CtoeDlg	signature:(CDataExchange* pDX)
 DoDataExchange	./toe/toeDlg.h	21;"	prototype	class:CtoeDlg	signature:(CDataExchange* pDX)
-drawPicture	./toe/toe.py	19;"	function
+drawPicture	./toe/toe.py	103;"	function
 email	./commonlib/maillib.py	11;"	namespace
 email	./commonlib/maillib.py	12;"	namespace
-ex	./commonlib/commonlib.py	136;"	function	function:existMan
-ex0	./commonlib/tensorflowlib.py	21;"	function
-ex1	./commonlib/commonlib.py	143;"	function	function:existMan
-ex1	./commonlib/tensorflowlib.py	44;"	function
-ex2	./commonlib/tensorflowlib.py	66;"	function
-ex3	./commonlib/tensorflowlib.py	124;"	function
-exciter	./toe/toe.py	92;"	function
-existMan	./commonlib/commonlib.py	134;"	function
-exportnet	./commonlib/ffnetlib.py	8;"	namespace
+ex	./commonlib/commonlib.py	140;"	function	function:existMan
+ex1	./commonlib/commonlib.py	147;"	function	function:existMan
+exciter	./toe/toe.py	79;"	function
+existMan	./commonlib/commonlib.py	139;"	function
+exportnet	./commonlib/ffnetlib.py	7;"	namespace
 EXTLIB	./termux/Makefile	18;"	macro
-f	./commonlib/commonlib.py	81;"	function	function:fibonacci
+f	./commonlib/commonlib.py	83;"	function	function:fibonacci
 ffnet	./commonlib/ex.py	1;"	namespace
-ffnet	./commonlib/ffnetlib.py	8;"	namespace
-fibonacci	./commonlib/commonlib.py	75;"	function
+ffnet	./commonlib/ffnetlib.py	7;"	namespace
+fibonacci	./commonlib/commonlib.py	77;"	function
 fibonacci	./termux/liblinux.c	14;"	function	signature:(int a)
 fibonacci	./termux/liblinux.h	12;"	prototype	signature:(int)
 fibonacci	./termux/toelinux.h	10;"	prototype	signature:(int)
 fibonacci	./winlib/winlib.cpp	13;"	function	signature:(int a)
 fibonacci	./winlib/winlib.h	17;"	prototype	signature:(int)
-floydAlgorithm	./commonlib/commonlib.py	61;"	function
+floydAlgorithm	./commonlib/commonlib.py	62;"	function
 frameReceive	./gdb/interfacepasslib.h	253;"	function	signature:(struct s_ethernetSocket* vp_socket, struct s_frameBuffer* vp_frameBuffer)
 frameRx	./gdb/interfacepasslib.h	284;"	function	signature:(struct s_ethernetSocket* vp_socket, struct s_frameBuffer* vp_frameBuffer)
 frameRxForm1stNIC	./gdb/interfacepasslib.h	295;"	function	signature:(struct s_frameBuffer* vp_frameBuffer)
 frameRxForm2ndNIC	./gdb/interfacepasslib.h	300;"	function	signature:(struct s_frameBuffer* vp_frameBuffer)
 frameSend	./gdb/interfacepasslib.h	305;"	function	signature:(struct s_frameBuffer* vp_frameBuffer)
 frameTx	./gdb/interfacepasslib.h	324;"	function	signature:(struct s_frameBuffer* vp_frameBuffer)
-fTimer	./commonlib/annlib.py	50;"	function
-fully_connected_feed	./commonlib/tensorflowlib.py	121;"	namespace
+fTimer	./commonlib/annlib.py	53;"	function
 getBuff	./gdb/interfacepasslib.h	141;"	function	signature:(struct s_frameInfo* vp_buff, int* vp_putBuffPos, int* vp_getBuffPos)
 getCh	./termux/liblinux.py	23;"	function
 getCh	./winlib/winlib.cpp	25;"	function	signature:()
 getCh	./winlib/winlib.h	18;"	prototype	signature:()
 getCh	./winlib/winlib.py	23;"	function
-getCpus	./commonlib/commonlib.py	24;"	function
+getCpus	./commonlib/commonlib.py	25;"	function
 getInterfaceIndex	./gdb/interfacepasslib.h	164;"	function	signature:(int v_socket, char* v_nic)
 getMbFormat	./commonlib/maillib.py	18;"	function
 getMbInner	./commonlib/maillib.py	26;"	function
 getMbOuter	./commonlib/maillib.py	34;"	function
-getMnist	./commonlib/tensorflowlib.py	14;"	function
 getPp	./commonlib/maillib.py	58;"	function
 getRxUrl	./commonlib/maillib.py	42;"	function
-getSystem	./commonlib/commonlib.py	28;"	function
+getSystem	./commonlib/commonlib.py	29;"	function
 getTime	./gdb/interfacepasslib.h	97;"	function	signature:(struct timeval* vp_time)
 getTxUrl	./commonlib/maillib.py	50;"	function
-getView	./toe/toe.py	37;"	member	class:cBoard
+getView	./toe/toe.py	29;"	member	class:cBoard
 gp_frameBuffer	./gdb/interfacepasslib.h	73;"	variable	typeref:struct:s_frameBuffer
 hello	./gdb/toelinux.c	10;"	function
 hello	./gdb/toelinux.h	9;"	prototype	signature:()
@@ -132,15 +122,12 @@ IDR_MAINFRAME	./toe/Resource.h	5;"	macro
 imlgraph	./commonlib/ex.py	1;"	namespace
 InitInstance	./toe/toe.cpp	37;"	function	class:CtoeApp	signature:()
 InitInstance	./toe/toe.h	25;"	prototype	class:CtoeApp	signature:()
-input	./commonlib/ffnetlib.py	15;"	variable
-input_data	./commonlib/tensorflowlib.py	7;"	namespace
-j	./commonlib/annlib.py	101;"	variable
-Keys	./commonlib/seleniumlib.py	11;"	namespace
-Keys	./toe/toe.py	119;"	namespace
-l1	./commonlib/annlib.py	93;"	variable
-l1_delta	./commonlib/annlib.py	96;"	variable
-l2	./commonlib/annlib.py	94;"	variable
-l2_delta	./commonlib/annlib.py	95;"	variable
+j	./commonlib/annlib.py	108;"	variable
+Keys	./commonlib/seleniumlib.py	14;"	namespace
+l1	./commonlib/annlib.py	100;"	variable
+l1_delta	./commonlib/annlib.py	103;"	variable
+l2	./commonlib/annlib.py	101;"	variable
+l2_delta	./commonlib/annlib.py	102;"	variable
 LDFLAGS	./gdb/Makefile	2;"	macro
 LDFLAGS	./termux/Makefile	16;"	macro
 LIBCC	./termux/Makefile	4;"	macro
@@ -151,40 +138,32 @@ liblinux	./termux/toelinux.py	13;"	namespace
 LIBNAME	./termux/Makefile	8;"	macro
 LIBOBJECT	./termux/Makefile	9;"	macro
 LIBOUTPATH	./termux/Makefile	6;"	macro
-loadnet	./commonlib/ffnetlib.py	8;"	namespace
+loadnet	./commonlib/ffnetlib.py	7;"	namespace
 logging	./commonlib/commonlib.py	9;"	namespace
 logging	./commonlib/maillib.py	7;"	namespace
 maillib	./commonlib/mailserver.py	7;"	namespace
-main	./commonlib/mailserver.py	13;"	function
-main	./commonlib/mtpltlib.py	15;"	function
-main	./commonlib/seleniumlib.py	7;"	function
-main	./commonlib/socketlib.py	12;"	function
-main	./commonlib/tensorflowlib.py	129;"	function
 main	./gdb/toelinux.c	17;"	function	signature:(int argc, char** argv)
 main	./termux/toelinux.c	11;"	function
-main	./toe/toe.py	115;"	function
 maintest	./gdb/interfacepasslib.h	347;"	function	signature:(int argc, char** argv)
 makeFile	./commonlib/zipfilelib.py	23;"	function
 matplotlib	./commonlib/mtpltlib.py	10;"	namespace
-matplotlib	./commonlib/mtpltlib.py	11;"	namespace
-matplotlib	./commonlib/tensorflowlib.py	11;"	namespace
-matplotlib	./toe/toe.py	15;"	namespace
-max_pool_2x2	./commonlib/tensorflowlib.py	79;"	function	function:ex2
-mbC2SSend	./commonlib/maillib.py	113;"	function
-mbCRx	./commonlib/maillib.py	133;"	function
+matplotlib	./commonlib/mtpltlib.py	9;"	namespace
+matplotlib	./toe/toe.py	14;"	namespace
+mbC2SSend	./commonlib/maillib.py	114;"	function
+mbCRx	./commonlib/maillib.py	134;"	function
 mbRx	./commonlib/maillib.py	84;"	function
-mbS2CSend	./commonlib/maillib.py	123;"	function
-mbSRx	./commonlib/maillib.py	141;"	function
+mbS2CSend	./commonlib/maillib.py	124;"	function
+mbSRx	./commonlib/maillib.py	142;"	function
 mbTx	./commonlib/maillib.py	66;"	function
 memDisp	./gdb/interfacepasslib.h	77;"	function	signature:(char* vp_buffer, int v_length)
 mime	./commonlib/maillib.py	11;"	namespace
 mime	./commonlib/maillib.py	12;"	namespace
-mlgraph	./commonlib/ffnetlib.py	8;"	namespace
+mlgraph	./commonlib/ffnetlib.py	7;"	namespace
 mp_1stSocket	./gdb/interfacepasslib.h	63;"	member	struct:s_frameBuffer	typeref:struct:s_frameBuffer::s_ethernetSocket
 mp_2ndSocket	./gdb/interfacepasslib.h	65;"	member	struct:s_frameBuffer	typeref:struct:s_frameBuffer::s_ethernetSocket
 mp_dSocket	./gdb/interfacepasslib.h	48;"	member	struct:s_frameInfo	typeref:struct:s_frameInfo::s_ethernetSocket
 mp_sSocket	./gdb/interfacepasslib.h	47;"	member	struct:s_frameInfo	typeref:struct:s_frameInfo::s_ethernetSocket
-msg	./commonlib/commonlib.py	121;"	function
+msg	./commonlib/commonlib.py	126;"	function
 multipart	./commonlib/maillib.py	11;"	namespace
 multiprocessing	./commonlib/annlib.py	9;"	namespace
 multiprocessing	./commonlib/commonlib.py	15;"	namespace
@@ -206,19 +185,18 @@ m_threadAccessing	./gdb/interfacepasslib.h	59;"	member	struct:s_frameBuffer
 m_timerCount	./gdb/interfacepasslib.h	51;"	member	struct:s_frameInfo
 m_timerCount	./gdb/interfacepasslib.h	60;"	member	struct:s_frameBuffer
 m_txTimeStamp	./gdb/interfacepasslib.h	53;"	member	struct:s_frameInfo	typeref:struct:s_frameInfo::timeval
-nc	./commonlib/annlib.py	100;"	variable
+nc	./commonlib/annlib.py	107;"	variable
 net	./commonlib/ex.py	6;"	variable
-net	./commonlib/ffnetlib.py	14;"	variable
 neuron	./commonlib/annlib.py	21;"	class
-neuronalNetwork	./commonlib/annlib.py	45;"	class
+neuronalNetwork	./commonlib/annlib.py	48;"	class
 new	./toe/toe.cpp	10;"	macro	file:
 new	./toe/toeDlg.cpp	16;"	macro	file:
-nnlib	./toe/toe.py	14;"	namespace
-np	./commonlib/annlib.py	85;"	namespace
-np	./commonlib/mtpltlib.py	9;"	namespace
-np	./toe/toe.py	16;"	namespace
+nltk	./commonlib/nltklib.py	9;"	namespace
+np	./commonlib/annlib.py	92;"	namespace
+np	./commonlib/mtpltlib.py	8;"	namespace
+np	./toe/toe.py	15;"	namespace
 NX	./commonlib/ex.py	2;"	namespace
-NX	./commonlib/ffnetlib.py	9;"	namespace
+NX	./commonlib/ffnetlib.py	8;"	namespace
 OBJECT	./gdb/Makefile	7;"	macro
 OnInitDialog	./toe/toeDlg.cpp	43;"	function	class:CtoeDlg	signature:()
 OnInitDialog	./toe/toeDlg.h	29;"	prototype	class:CtoeDlg	signature:()
@@ -226,82 +204,92 @@ OnPaint	./toe/toeDlg.cpp	67;"	function	class:CtoeDlg	signature:()
 OnPaint	./toe/toeDlg.h	30;"	prototype	class:CtoeDlg	signature:()
 OnQueryDragIcon	./toe/toeDlg.cpp	94;"	function	class:CtoeDlg	signature:()
 OnQueryDragIcon	./toe/toeDlg.h	31;"	prototype	class:CtoeDlg	signature:()
-opt	./commonlib/sqlite3lib.py	43;"	member	class:sqliteMemory
+opt	./commonlib/sqlite3lib.py	44;"	member	class:sqliteMemory
 os	./commonlib/commonlib.py	13;"	namespace
 os	./commonlib/mailserver.py	8;"	namespace
-os	./commonlib/pydifflib.py	8;"	namespace
-os	./commonlib/seleniumlib.py	8;"	namespace
-os	./commonlib/zipfilelib.py	9;"	namespace
+os	./commonlib/pydifflib.py	7;"	namespace
+os	./commonlib/seleniumlib.py	11;"	namespace
+os	./commonlib/zipfilelib.py	8;"	namespace
 os	./termux/liblinux.py	10;"	namespace
 os	./termux/toelinux.py	9;"	namespace
-os	./toe/toe.py	116;"	namespace
 os	./toe/toe.py	9;"	namespace
 os	./winlib/winlib.py	10;"	namespace
-partial_derivatives	./commonlib/ffnetlib.py	23;"	variable
 platform	./commonlib/commonlib.py	11;"	namespace
-play	./toe/toe.py	66;"	member	class:cBoard
-plt	./commonlib/mtpltlib.py	10;"	namespace
-plt	./commonlib/tensorflowlib.py	11;"	namespace
-plt	./toe/toe.py	15;"	namespace
+play	./toe/toe.py	53;"	member	class:cBoard
+plt	./commonlib/mtpltlib.py	9;"	namespace
+plt	./toe/toe.py	14;"	namespace
 poplib	./commonlib/maillib.py	9;"	namespace
-poundGan	./toe/toe.py	102;"	function
+poundGan	./toe/toe.py	89;"	function
 printBuffInfo	./gdb/interfacepasslib.h	245;"	function	signature:(struct s_frameBuffer* vp_frameBuffer, struct s_frameInfo* vp_buffer, int v_rx0OrTx1)
-prmpt	./toe/toe.py	134;"	function
-prompt	./toe/toe.py	133;"	namespace
+prmpt	./toe/toe.py	111;"	function
+prompt	./toe/toe.py	16;"	namespace
 putBuff	./gdb/interfacepasslib.h	122;"	function	signature:(struct s_frameInfo* vp_buff, int* vp_putBuffPos, int* vp_getBuffPos)
 pyAddPath	./commonlib/py.h	21;"	function	signature:(const char* string)
 pyClose	./commonlib/py.h	46;"	function	signature:()
-pydifflib	./commonlib/pydifflib.py	11;"	function
-pyFormat	./commonlib/commonlib.py	17;"	function
+pyFormat	./commonlib/commonlib.py	18;"	function
 pyFunction	./commonlib/py.h	27;"	function	signature:(const char* module, const char* function, const char* format, ...)
 pylab	./commonlib/ex.py	3;"	namespace
-pylab	./commonlib/ffnetlib.py	10;"	namespace
+pylab	./commonlib/ffnetlib.py	9;"	namespace
 pyOpen	./commonlib/py.h	12;"	function	signature:()
 random	./commonlib/annlib.py	8;"	namespace
-random	./commonlib/mtpltlib.py	12;"	namespace
+random	./commonlib/mtpltlib.py	11;"	namespace
 receiveData	./gdb/interfacepasslib.h	228;"	function	signature:(struct s_ethernetSocket* vp_socket, char* vp_buffer, int v_length)
-s	./commonlib/annlib.py	104;"	variable
-savenet	./commonlib/ffnetlib.py	8;"	namespace
-sensor	./toe/toe.py	84;"	function
+s	./commonlib/annlib.py	111;"	variable
+savenet	./commonlib/ffnetlib.py	7;"	namespace
+sensor	./toe/toe.py	71;"	function
 setDendrite	./commonlib/annlib.py	30;"	member	class:neuron
 setTimer	./gdb/interfacepasslib.h	107;"	function	signature:(int v_sec, int v_usec)
 sigintHandler	./gdb/interfacepasslib.h	102;"	function	signature:()
 signalTimerHandler	./gdb/interfacepasslib.h	117;"	function	signature:()
 SLLNAME	./termux/Makefile	11;"	macro
 smtplib	./commonlib/maillib.py	10;"	namespace
-socket	./commonlib/socketlib.py	8;"	namespace
-spentTime	./commonlib/commonlib.py	36;"	function
-sqlite3	./commonlib/sqlite3lib.py	6;"	namespace
-sqliteMemory	./commonlib/sqlite3lib.py	39;"	class
-sqliteOpt	./commonlib/sqlite3lib.py	9;"	function
-sqliteOptBatch	./commonlib/sqlite3lib.py	25;"	function
+socket	./commonlib/socketlib.py	7;"	namespace
+spentTime	./commonlib/commonlib.py	37;"	function
+sqlite3	./commonlib/sqlite3lib.py	7;"	namespace
+sqliteMemory	./commonlib/sqlite3lib.py	40;"	class
+sqliteOpt	./commonlib/sqlite3lib.py	10;"	function
+sqliteOptBatch	./commonlib/sqlite3lib.py	26;"	function
 sqlt3	./commonlib/annlib.py	13;"	namespace
-steps	./toe/toe.py	59;"	member	class:cBoard
-subtract	./commonlib/commonlib.py	51;"	function
+steps	./toe/toe.py	46;"	member	class:cBoard
+subtract	./commonlib/commonlib.py	52;"	function
 subtract	./termux/liblinux.c	9;"	function	signature:(int a, int b)
 subtract	./termux/liblinux.h	11;"	prototype	signature:(int, int)
 subtract	./termux/toelinux.h	9;"	prototype	signature:(int,int)
 subtract	./winlib/winlib.cpp	8;"	function	signature:(int a, int b)
 subtract	./winlib/winlib.h	16;"	prototype	signature:(int, int)
-syn0	./commonlib/annlib.py	90;"	variable
-syn1	./commonlib/annlib.py	91;"	variable
+syn0	./commonlib/annlib.py	97;"	variable
+syn1	./commonlib/annlib.py	98;"	variable
 sys	./commonlib/annlib.py	7;"	namespace
 sys	./commonlib/commonlib.py	12;"	namespace
-sys	./commonlib/seleniumlib.py	9;"	namespace
+sys	./commonlib/seleniumlib.py	12;"	namespace
 sys	./termux/liblinux.py	29;"	namespace
 sys	./termux/liblinux.py	9;"	namespace
 sys	./termux/toelinux.py	8;"	namespace
-sys	./toe/toe.py	117;"	namespace
 sys	./toe/toe.py	8;"	namespace
 sys	./winlib/winlib.py	9;"	namespace
 SYSTEMPATH	./termux/Makefile	15;"	macro
 s_ethernetSocket	./gdb/interfacepasslib.h	38;"	struct
 s_frameBuffer	./gdb/interfacepasslib.h	56;"	struct
 s_frameInfo	./gdb/interfacepasslib.h	45;"	struct
-target	./commonlib/ffnetlib.py	16;"	variable
 termios	./termux/liblinux.py	29;"	namespace
-test	./commonlib/annlib.py	57;"	function
-test	./commonlib/sqlite3lib.py	63;"	function
+test	./commonlib/annlib.py	60;"	function
+test	./commonlib/commonlib.py	156;"	function
+test	./commonlib/ffnetlib.py	12;"	function
+test	./commonlib/maillib.py	150;"	function
+test	./commonlib/mailserver.py	13;"	function
+test	./commonlib/mtpltlib.py	14;"	function
+test	./commonlib/nltklib.py	12;"	function
+test	./commonlib/pydifflib.py	10;"	function
+test	./commonlib/seleniumlib.py	10;"	function
+test	./commonlib/socketlib.py	11;"	function
+test	./commonlib/sqlite3lib.py	64;"	function
+test	./commonlib/tensorflowlib.py	11;"	function
+test	./commonlib/tusharelib.py	11;"	function
+test	./commonlib/zipfilelib.py	37;"	function
+test	./termux/liblinux.py	43;"	function
+test	./termux/toelinux.py	16;"	function
+test	./toe/toe.py	119;"	function
+test	./winlib/winlib.py	30;"	function
 text	./commonlib/maillib.py	12;"	namespace
 tf	./commonlib/tensorflowlib.py	8;"	namespace
 theApp	./toe/toe.cpp	32;"	variable
@@ -309,21 +297,19 @@ time	./commonlib/annlib.py	10;"	namespace
 time	./commonlib/commonlib.py	8;"	namespace
 time	./commonlib/maillib.py	15;"	namespace
 time	./commonlib/mailserver.py	10;"	namespace
-time	./commonlib/socketlib.py	9;"	namespace
-time	./commonlib/tensorflowlib.py	9;"	namespace
-time	./commonlib/zipfilelib.py	10;"	namespace
+time	./commonlib/socketlib.py	8;"	namespace
+time	./commonlib/zipfilelib.py	9;"	namespace
 tty	./termux/liblinux.py	29;"	namespace
+tushare	./commonlib/tusharelib.py	8;"	namespace
 undoBuff	./gdb/interfacepasslib.h	159;"	function	signature:(int* vp_buffPos)
 unitCell	./commonlib/annlib.py	16;"	class
 VC_EXTRALEAN	./toe/stdafx.h	9;"	macro
-webdriver	./commonlib/seleniumlib.py	10;"	namespace
-webdriver	./toe/toe.py	118;"	namespace
-weight_variable	./commonlib/tensorflowlib.py	68;"	function	function:ex2
+webdriver	./commonlib/seleniumlib.py	13;"	namespace
 winlib	./toe/toe.py	13;"	namespace
-X	./commonlib/annlib.py	88;"	variable
-y	./commonlib/annlib.py	89;"	variable
-zipfile	./commonlib/zipfilelib.py	8;"	namespace
-zipfilelib	./commonlib/zipfilelib.py	13;"	function
+X	./commonlib/annlib.py	95;"	variable
+y	./commonlib/annlib.py	96;"	variable
+zipfile	./commonlib/zipfilelib.py	7;"	namespace
+zipfilelib	./commonlib/zipfilelib.py	12;"	function
 _AFX_ALL_WARNINGS	./toe/stdafx.h	17;"	macro
 _APS_NEXT_COMMAND_VALUE	./toe/Resource.h	16;"	macro
 _APS_NEXT_CONTROL_VALUE	./toe/Resource.h	14;"	macro
@@ -332,9 +318,9 @@ _APS_NEXT_SYMED_VALUE	./toe/Resource.h	15;"	macro
 _ATL_CSTRING_EXPLICIT_CONSTRUCTORS	./toe/stdafx.h	14;"	macro
 __init__	./commonlib/annlib.py	17;"	member	class:unitCell
 __init__	./commonlib/annlib.py	22;"	member	class:neuron
-__init__	./commonlib/annlib.py	46;"	member	class:neuronalNetwork
-__init__	./commonlib/sqlite3lib.py	40;"	member	class:sqliteMemory
-__init__	./toe/toe.py	34;"	member	class:cBoard
+__init__	./commonlib/annlib.py	49;"	member	class:neuronalNetwork
+__init__	./commonlib/sqlite3lib.py	41;"	member	class:sqliteMemory
+__init__	./toe/toe.py	26;"	member	class:cBoard
 __liblinuxh__	./termux/liblinux.h	7;"	macro
 __pyh__	./commonlib/py.h	7;"	macro
 __toelinuxh__	./gdb/toelinux.h	7;"	macro
