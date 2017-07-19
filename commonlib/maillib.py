@@ -148,7 +148,7 @@ def mbSRx():
 
 
 def test():
-  mbC2SSend('dir\nipconfig')
+  mbC2SSend('dir\ndate')
   time.sleep(1)
   t_rx = mbCRx()
   t_mbNumber = len(t_rx)
