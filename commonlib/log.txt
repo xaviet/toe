@@ -33,3 +33,10 @@ MariaDB [mysql]> flush privileges;
 [nohup]
 /usr/bin/nohup /usr/bin/python3 /opt/toe/commonlib/mailserver.py>/dev/null 2>&1 &
 
+[mangos zero]
+git clone https://github.com/mangoszero/server.git serverZero --recursive --depth=1
+git clone https://github.com/mangoszero/database.git dbZero --recursive --depth=1
+https://github.com/mangoszero/
+https://www.getmangos.eu/wiki/documentation/installation-guides/guideslinux/installing-mangos-on-fedora-25-r20076/
+cmake ./src #depend openssl-devel mariadb-devel cmake
+make
