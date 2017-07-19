@@ -8,9 +8,15 @@
 
 import nltk
 # data ready by nltk.download()
+# keep default dictionary
+from nltk.book import *
+
 
 def test():
-  pass
+  #texts()
+  text1.concordance('monstrous')
+  text1.collocations()
+  #text4.dispersion_plot(['freedom', 'America'])
   
   
 if(__name__=='__main__'):
