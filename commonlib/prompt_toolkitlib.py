@@ -10,7 +10,7 @@ from prompt_toolkit import prompt
 
 def test():
   while (True):
-    cmd = prompt(' > ')
+    cmd = prompt('> ')
     print(cmd)
     if (cmd == 'exit'):
       break
