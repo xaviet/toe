@@ -147,6 +147,10 @@ def mbSRx():
   return (mbRx(getMbInner(), getPp(), 'client'))
 
 
+def mbAccessInterval():
+  return(128)
+
+
 def test():
   mbC2SSend('ps aux|grep python3\ndate')
   time.sleep(1)
