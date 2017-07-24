@@ -40,3 +40,7 @@ https://github.com/mangoszero/
 https://www.getmangos.eu/wiki/documentation/installation-guides/guideslinux/installing-mangos-on-fedora-25-r20076/
 cmake ./src #depend openssl-devel mariadb-devel cmake
 make
+
+[prompt bash]
+modify /etc/bashrc
+PS1="\\$ "
