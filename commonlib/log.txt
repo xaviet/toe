@@ -44,3 +44,10 @@ make
 [prompt bash]
 modify /etc/bashrc
 PS1="\\$ "
+
+[networkx graphviz pygraphviz]
+AttributeError: module 'networkx.drawing' has no attribute 'graphviz_layout'
+sudo vi //usr/lib/python3.5/site-packages/networkx/drawing/nx_pylab.py:984
+    # pos = nx.drawing.graphviz_layout(G, prog)
+    # modify by pv
+    pos = nx.drawing.nx_agraph.graphviz_layout(G, prog)

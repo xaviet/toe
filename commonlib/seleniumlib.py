@@ -20,10 +20,14 @@ def test():
     sys.path.append('{0}firefox.exe'.format(ffPath))
   driver = webdriver.Firefox()
   driver.maximize_window()
-  driver.get('http://www.lfd.uci.edu/~gohlke/pythonlibs/')
-  elem = driver.find_element_by_tag_name('p')
-  print(elem)
-  elem.clear()
+  driver.get('http://172.28.73.8/c6/Jhsoft.Web.login/PassWordNew.aspx')
+  driver.find_element_by_name('UserName').send_keys("xujin")
+  driver.find_element_by_name('Password2').send_keys("13971146175")
+  driver.find_element_by_id('btnLogin').click()
+  driver.find_element_by_id('toolbarmenu').click()
+  input()
+  driver.find_element_by_class('currentList').click()
+  
   driver.close()
 
 

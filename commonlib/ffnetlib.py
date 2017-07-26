@@ -4,25 +4,16 @@
   ffnetlib.py
 '''
 
-from ffnet import ffnet, mlgraph, savenet, loadnet, exportnet
-import networkx as NX
-import pylab
-
 
 def test():
-  conec = mlgraph((2, 2, 1))
-  net = ffnet(conec)
-  input = [[0., 0.], [0., 1.], [1., 0.], [1., 1.]]
-  target = [[1.], [0.], [0.], [1.]]
-  net.train_tnc(input, target, maxfun=1000)
-  net.test(input, target, iprint=2)
-  #savenet(net, "xor.net")
-  #exportnet(net, "xor.f")
-  #net = loadnet("xor.net")
-  answer = net([0., 0.])
-  partial_derivatives = net.derivative([0., 0.])
-
-  NX.draw_networkx(net.graph, prog='dot')
+  from ffnet import mlgraph, ffnet
+  import networkx as NX
+  import pylab
+  conec1 = mlgraph((2,2,2), biases=False)
+  net1 = ffnet(conec1)
+  conec2 = mlgraph((4,2,2,1), biases=True)
+  net2 = ffnet(conec2)
+  NX.draw_graphviz(net1.graph, prog='dot')
   pylab.show()
 
 
