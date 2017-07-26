@@ -9,9 +9,9 @@ def test():
   from ffnet import mlgraph, ffnet
   import networkx as NX
   import pylab
-  conec1 = mlgraph((2,2,2), biases=False)
+  conec1 = mlgraph((2, 2, 2), biases=False)
   net1 = ffnet(conec1)
-  conec2 = mlgraph((4,2,2,1), biases=True)
+  conec2 = mlgraph((4, 2, 2, 1), biases=True)
   net2 = ffnet(conec2)
   NX.draw_graphviz(net1.graph, prog='dot')
   pylab.show()

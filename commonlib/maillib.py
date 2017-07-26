@@ -148,7 +148,7 @@ def mbSRx():
 
 
 def mbAccessInterval():
-  return(128)
+  return (128)
 
 
 def test():

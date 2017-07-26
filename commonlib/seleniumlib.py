@@ -27,7 +27,7 @@ def test():
   driver.find_element_by_id('toolbarmenu').click()
   input()
   driver.find_element_by_class('currentList').click()
-  
+
   driver.close()
 
 
