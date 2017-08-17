@@ -53,3 +53,12 @@ sudo vi //usr/lib/python3.5/site-packages/networkx/drawing/nx_pylab.py:984
     # pos = nx.drawing.graphviz_layout(G, prog)
     # modify by pv
     pos = nx.drawing.nx_agraph.graphviz_layout(G, prog)
+
+[linux open files for root]
+/etc/security/limits.conf
+* soft nofile 32768
+* hard nofile 32768
+/etc/pam.d/login
+session    required     pam_limits.so
+/etc/profile
+/usr/bin/ulimit -SHn 32768 -SHu 32768
