@@ -62,3 +62,7 @@ sudo vi //usr/lib/python3.5/site-packages/networkx/drawing/nx_pylab.py:984
 session    required     pam_limits.so
 /etc/profile
 /usr/bin/ulimit -SHn 32768 -SHu 32768
+
+[xfs fragment]
+xfs_db -c frag -r /dev/mapper/fedora_pv-root
+xfs_fsr /dev/mapper/fedora_pv-root
