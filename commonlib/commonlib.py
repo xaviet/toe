@@ -13,7 +13,7 @@ import sys
 import os
 import ctypes
 import multiprocessing
-
+import base64
 
 def pyFormat(path):
   '''
@@ -120,9 +120,16 @@ def crypto(v_str):
     for t_i in range(26):
       t_d[chr(t_i + t_c)] = chr((t_i + 13) % 26 + t_c)
   return ((''.join([t_d.get(t_c, t_c) for t_c in v_str])))
-  #return(v_str)
 
 
+def base64Encode(vString):
+  return(base64.b64encode(vString.encode('utf-8')).decode('utf-8'))
+
+
+def base64Decode(vString):
+  return(base64.b64decode(vString.encode('utf-8')).decode('utf-8'))
+  
+  
 def msg(v_msg, v_rollmode=True, v_newlinemode=True):
   '''
     print msg with roll and newline
