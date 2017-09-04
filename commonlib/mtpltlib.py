@@ -14,8 +14,9 @@ from mpl_toolkits.mplot3d import Axes3D
 
 def test():
   a = [i for i in range(256)]
-  b = [random.random() for i in a]
-  fig1 = plt.figure(a, b)
+  b = [(random.random(),random.random()) for i in a]
+  fig1 = plt.figure(1)
+  plt.plot(a,b)
   plt.show()
 
 
