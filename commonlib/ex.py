@@ -81,12 +81,10 @@ a = {0:x}
 z = {0:actfc[0](a[0])}  
 for i in range(1,len(units)):  
     a[i],z[i] = forward(z[i-1],connt[i],actfc[i])  
-
-a = {0:x}  
-e = {0:actfc[0](a[0])}  
-for i in range(1,len(units)):  
-    a[i],e[i] = backward(dt[i],a[i-1],z[i-1],connt[i],np.tanh)  
       
+b=[0.5/(i+1) for i in range(1000)]
+
+
 #plt.plot(x.T,t.T,'r',x,a[len(units)-1],'b',x,e[len(units)-1],'*') 
-plt.plot(x.T,t.T,'r')   
+plt.plot(x.T,t.T,'r',x,a[len(units)-1],'b',x,b[len(units)-1],'*')   
 plt.show()
