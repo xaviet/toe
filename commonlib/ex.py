@@ -88,5 +88,5 @@ for i in range(1,len(units)):
     a[i],e[i] = backward(dt[i],a[i-1],z[i-1],connt[i],np.tanh)  
       
 #plt.plot(x.T,t.T,'r',x,a[len(units)-1],'b',x,e[len(units)-1],'*') 
-plt.plot(x.T,t.T,'r',x,a[len(units)-1],'b',x,e[len(units)-1],'*')   
+plt.plot(x.T,t.T,'r')   
 plt.show()
