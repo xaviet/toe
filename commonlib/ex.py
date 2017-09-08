@@ -7,7 +7,10 @@
 
 import numpy as np  
 from scipy.misc import derivative  
-import matplotlib.pylab as plt  
+try:
+  import matplotlib.pylab as plt  
+except:
+  pltLoad=False
 import time
 import commonlib
 
@@ -85,13 +88,14 @@ def main(fn,times):
   for i in range(1,len(units)):  
       a[i],z[i] = forward(z[i-1],connt[i],actfc[i])  
         
-  plt.xlim(-8,8)
-  plt.ylim(-1,1)
-  plt.title('train times: %d'%(times,))
-  #plt.plot(x.T,t.T,'r',x,a[len(units)-1],'b',x,e[len(units)-1],'*') 
-  plt.plot(x.T,t.T,'r',x,a[len(units)-1],'*')   
-  plt.savefig(fn,dpi=64)
-  plt.close('all')
+  if(pltLoad):      
+    plt.xlim(-8,8)
+    plt.ylim(-1,1)
+    plt.title('train times: %d'%(times,))
+    #plt.plot(x.T,t.T,'r',x,a[len(units)-1],'b',x,e[len(units)-1],'*') 
+    plt.plot(x.T,t.T,'r',x,a[len(units)-1],'*')   
+    plt.savefig(fn,dpi=64)
+    plt.close('all')
   
 
 if(__name__ == '__main__'):
@@ -99,7 +103,7 @@ if(__name__ == '__main__'):
   st=[]
   for i in range(1,times+1):
     timestart=time.time()
-    main('./annpage/%d.png'%(i,),i)
+    main('../../temp/annpage/%d.png'%(i,),i)
     st.append(1000*(time.time()-timestart))
     print('%2d / %2d   %08dms'%(i,times,st[i-1]))
   commonlib.dispDataList(st)
