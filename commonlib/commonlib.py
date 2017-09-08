@@ -159,6 +159,11 @@ def existMan(num, start, interval):
 
   print(ex(num, start, interval))
 
+def dispDataList(vList, maxValue=64):
+  refData=max(vList)
+  for el0 in vList:
+    print('*'*int(maxValue*el0/refData))
+
 
 def test():
   pass
@@ -172,4 +177,4 @@ def test():
 
 
 if (__name__ == '__main__'):
-  test()
+  dispDataList([1,3,4,2,45,5,12,1,2,44,33,22,0])

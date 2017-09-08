@@ -9,7 +9,7 @@ import numpy as np
 from scipy.misc import derivative  
 import matplotlib.pylab as plt  
 import time
-
+import commonlib
 
 def main(fn,times):  
   def identy(x):  
@@ -47,9 +47,9 @@ def main(fn,times):
             
     
   x = np.array([np.linspace(-7, 7, 200)])  
-  t = np.cos(x) * 0.5  
+  t = np.sin(x) * 0.5  
     
-  units = np.array([1,16,16,16,16,16,16,16,16,1])  
+  units = np.array([1,6,6,1])  
   units_bias = units+1  
   ##print(units_bias)  
     
@@ -102,5 +102,4 @@ if(__name__ == '__main__'):
     main('./annpage/%d.png'%(i,),i)
     st.append(1000*(time.time()-timestart))
     print('%2d / %2d   %08dms'%(i,times,st[i-1]))
-  plt.plot(st)
-  plt.show()
+  commonlib.dispDataList(st)
