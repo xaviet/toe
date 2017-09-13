@@ -28,15 +28,12 @@ long_line_behaviour=1
 long_line_column=72
 
 [files]
-current_page=4
-FILE_NAME_0=1766;None;0;EUTF-8;0;1;1;%2Fhome%2Fpv%2FDocuments%2Ftoe%2Fcommonlib%2Flog.txt;0;4
-FILE_NAME_1=171;Python;0;EUTF-8;0;1;1;%2Fhome%2Fpv%2FDocuments%2Ftoe%2Fcommonlib%2Fflasklib.py;0;4
-FILE_NAME_2=0;Python;0;EUTF-8;0;1;1;%2Fhome%2Fpv%2FDocuments%2Ftoe%2Fcommonlib%2Fex.py;0;2
-FILE_NAME_3=0;Python;0;EUTF-8;0;1;1;%2Fhome%2Fpv%2FDocuments%2Ftoe%2Fcommonlib%2Fffnetlib.py;0;2
-FILE_NAME_4=7357;Python;0;EUTF-8;0;1;1;%2Fusr%2Flib%2Fpython3.5%2Fsite-packages%2Fryu%2Fapp%2Fwsgi.py;0;4
+current_page=0
+FILE_NAME_0=655;Python;0;EUTF-8;0;1;1;%2Fhome%2Fpv%2FDocuments%2Ftoe%2Fcommonlib%2Fex.py;0;2
+FILE_NAME_1=404;Python;0;EUTF-8;0;1;1;%2Fhome%2Fpv%2FDocuments%2Ftoe%2Fcommonlib%2Fmtpltlib.py;0;2
 
 [VTE]
-last_dir=/usr/lib/python3.5/site-packages/ryu/app
+last_dir=/home/pv/Documents/toe/commonlib
 
 [prjorg]
 source_patterns=*.c;*.C;*.cpp;*.cxx;*.c++;*.cc;*.m;

@@ -66,3 +66,10 @@ session    required     pam_limits.so
 [xfs fragment]
 xfs_db -c frag -r /dev/mapper/fedora_pv-root
 xfs_fsr /dev/mapper/fedora_pv-root
+
+[ffmpeg]
+https://download1.rpmfusion.org/free/fedora/rpmfusion-free-release-$(rpm -E %fedora).noarch.rpm https://download1.rpmfusion.org/nonfree/fedora/rpmfusion-nonfree-release-$(rpm -E %fedora).noarch.rpm
+dnf isntall ffmpeg*
+
+[termux repositories]
+curl -L https://its-pointless.github.io/setup-pointless-repo.sh | sh
