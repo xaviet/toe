@@ -79,6 +79,8 @@
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
     <LinkIncremental>true</LinkIncremental>
+    <IncludePath>C:\Program Files\Python36\include;$(IncludePath)</IncludePath>
+    <LibraryPath>C:\Program Files\Python36\libs;$(LibraryPath)</LibraryPath>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
     <LinkIncremental>false</LinkIncremental>
@@ -118,6 +120,7 @@
     </ClCompile>
     <Link>
       <SubSystem>Windows</SubSystem>
+      <ImportLibrary>C:\Program Files\Python36\libs\python36.lib</ImportLibrary>
     </Link>
     <Midl>
       <MkTypLibCompatible>false</MkTypLibCompatible>
