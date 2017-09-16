@@ -30,6 +30,7 @@
     <Compile Include="ffnetlib.py">
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="mailserverlib.py" />
     <Compile Include="mtpltlib.py" />
     <Compile Include="pydifflib.py">
       <SubType>Code</SubType>
@@ -37,7 +38,6 @@
     <Compile Include="tensorflowlib.py" />
     <Compile Include="commonlib.py" />
     <Compile Include="maillib.py" />
-    <Compile Include="mailserver.py" />
     <Compile Include="seleniumlib.py">
       <SubType>Code</SubType>
     </Compile>
