@@ -9,6 +9,7 @@ import numpy as np
 from scipy.misc import derivative  
 try:
   import matplotlib.pylab as plt  
+  pltLoad=True
 except:
   pltLoad=False
 import time
@@ -103,7 +104,7 @@ if(__name__ == '__main__'):
   st=[]
   for i in range(1,times+1):
     timestart=time.time()
-    main('../../temp/annpage/%d.png'%(i,),i)
+    main('./annpage/%d.png'%(i,),i)
     st.append(1000*(time.time()-timestart))
     print('%2d / %2d   %08dms'%(i,times,st[i-1]))
   commonlib.dispDataList(st)

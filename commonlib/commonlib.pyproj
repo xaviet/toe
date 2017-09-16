@@ -51,7 +51,6 @@
     <Compile Include="__init__.py" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="interfacepasslib.h" />
     <Content Include="log.txt" />
     <Content Include="py.h" />
     <Content Include="requirements.txt" />

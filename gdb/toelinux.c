@@ -22,6 +22,6 @@ int main(int argc, char** argv)
   printf("ending %d\n", a);
   scanf("%d", &a);
   printf("ending %d\n", a);
-  maintest(argc, argv);
+  //maintest(argc, argv);
   return(0);
 }
