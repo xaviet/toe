@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 15
-VisualStudioVersion = 15.0.26730.15
+VisualStudioVersion = 15.0.26730.16
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{888888A0-9F3D-457C-B088-3A5042F75D52}") = "commonlib", "commonlib\commonlib.pyproj", "{CC655BF5-972C-4A41-8F79-93B530CC7BA0}"
 EndProject
@@ -15,6 +15,8 @@ EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "termux", "termux\termux.vcxproj", "{0DFCAEB0-F5EC-4D3B-A9B0-B1C3E68144E7}"
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "gdb", "gdb\gdb.vcxproj", "{4FBADDFA-50E9-4676-8249-EE691B6475A1}"
+EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "matrixmul_CPUvsGPU", "matrixmul_CPUvsGPU\matrixmul_CPUvsGPU_vs2015.vcxproj", "{5675CDBE-AF14-44A6-9B5D-5E6F1A5353AC}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -88,6 +90,17 @@ Global
 		{4FBADDFA-50E9-4676-8249-EE691B6475A1}.Release|x64.ActiveCfg = Debug|x64
 		{4FBADDFA-50E9-4676-8249-EE691B6475A1}.Release|x86.ActiveCfg = Release|x86
 		{4FBADDFA-50E9-4676-8249-EE691B6475A1}.Release|x86.Build.0 = Release|x86
+		{5675CDBE-AF14-44A6-9B5D-5E6F1A5353AC}.Debug|Any CPU.ActiveCfg = Debug|x64
+		{5675CDBE-AF14-44A6-9B5D-5E6F1A5353AC}.Debug|Any CPU.Build.0 = Debug|x64
+		{5675CDBE-AF14-44A6-9B5D-5E6F1A5353AC}.Debug|ARM.ActiveCfg = Debug|x64
+		{5675CDBE-AF14-44A6-9B5D-5E6F1A5353AC}.Debug|x64.ActiveCfg = Debug|x64
+		{5675CDBE-AF14-44A6-9B5D-5E6F1A5353AC}.Debug|x64.Build.0 = Debug|x64
+		{5675CDBE-AF14-44A6-9B5D-5E6F1A5353AC}.Debug|x86.ActiveCfg = Debug|x64
+		{5675CDBE-AF14-44A6-9B5D-5E6F1A5353AC}.Release|Any CPU.ActiveCfg = Release|x64
+		{5675CDBE-AF14-44A6-9B5D-5E6F1A5353AC}.Release|ARM.ActiveCfg = Release|x64
+		{5675CDBE-AF14-44A6-9B5D-5E6F1A5353AC}.Release|x64.ActiveCfg = Release|x64
+		{5675CDBE-AF14-44A6-9B5D-5E6F1A5353AC}.Release|x64.Build.0 = Release|x64
+		{5675CDBE-AF14-44A6-9B5D-5E6F1A5353AC}.Release|x86.ActiveCfg = Release|x64
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
