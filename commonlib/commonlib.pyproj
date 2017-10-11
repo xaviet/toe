@@ -4,7 +4,7 @@
     <SchemaVersion>2.0</SchemaVersion>
     <ProjectGuid>cc655bf5-972c-4a41-8f79-93b530cc7ba0</ProjectGuid>
     <ProjectHome>.</ProjectHome>
-    <StartupFile>seleniumlib.py</StartupFile>
+    <StartupFile>commonlib.py</StartupFile>
     <SearchPath>
     </SearchPath>
     <WorkingDirectory>.</WorkingDirectory>
