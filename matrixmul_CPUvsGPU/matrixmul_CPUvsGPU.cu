@@ -187,11 +187,12 @@ int main(int argc, char* argv[])
   matrixprop[5] = matrixc.height;
 
   //申请显存
-  float *ma, *mb, *mc, *mp;
+  float *ma, *mb, *mc;
+  int *mp;
   cudaMalloc((void**)&ma, sizeof(float) * matrixa.width * matrixa.height);
   cudaMalloc((void**)&mb, sizeof(float) * matrixb.width * matrixb.height);
   cudaMalloc((void**)&mc, sizeof(float) * matrixc.width * matrixc.height);
-  cudaMalloc((void**)&mp, sizeof(float) * 6);
+  cudaMalloc((void**)&mp, sizeof(int) * 6);
   //将数据复制到显存内
   cudaMemcpy(ma, matrixa.element, sizeof(float) * matrixa.width * matrixa.height, cudaMemcpyHostToDevice);
   cudaMemcpy(mb, matrixb.element, sizeof(float) * matrixb.width * matrixb.height, cudaMemcpyHostToDevice);
