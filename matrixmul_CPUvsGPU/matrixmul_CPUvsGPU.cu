@@ -174,7 +174,7 @@ int main(int argc, char* argv[])
   SYSTEM_INFO sysInfo;
   GetSystemInfo(&sysInfo);
   start = clock();
-  matrixc = multiThreadsMM(matrixa, matrixb, sysInfo.dwNumberOfProcessors);
+  //matrixc = multiThreadsMM(matrixa, matrixb, sysInfo.dwNumberOfProcessors);
   finish = clock();
   printf("cpu time(%4d threads)\t\t = %fs %d\n", sysInfo.dwNumberOfProcessors, (float)(finish - start) / CLOCKS_PER_SEC, finish - start);
 
@@ -206,14 +206,17 @@ int main(int argc, char* argv[])
   finish = clock();
   printf("gpu time(%4d CUDA Cores)\t = %fs %d\n", cudaCores, (float)(finish - start)/CLOCKS_PER_SEC, finish - start);
   printMatrix(&gpuresult, 4, 4);
+  float err = 0;
   for (int i = 0; i < gpuresult.width * gpuresult.height; i++)
   {
-    //printf("%d -- %d\n",matrixc.element[ i ],gpuresult.element[ i ]);
-    if (matrixc.element[i] != gpuresult.element[i])
-    {
+    //if (matrixc.element[i] != gpuresult.element[i])
+    //{
       //printf("ERROR");
-    }
+    //}
+    err += matrixc.element[i] - gpuresult.element[i];
+    printf("%f - %f = %f \n", matrixc.element[i], gpuresult.element[i], err);
   }
+  printf("error: %f\n", err / (gpuresult.width * gpuresult.height));
 
   cudaFree(ma);
   cudaFree(mb);
