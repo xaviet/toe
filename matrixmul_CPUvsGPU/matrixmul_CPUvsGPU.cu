@@ -49,11 +49,11 @@ int InitCUDA(void)
 }
 #endif
 
-#define aW 2
-#define aH 2
-#define bW 2
-#define blocknum 32//32
-#define threadnum 256//256
+#define aW 512
+#define aH 512
+#define bW 512
+#define blocknum 32 //32
+#define threadnum 256 //256
 
 typedef struct
 {
@@ -113,7 +113,7 @@ int printMatrix(Matrix* c, int h, int w)
       {
         break;
       }
-      printf("%6f, ", c->element[i*c->width + j]);
+      printf("%16f, ", c->element[i*c->width + j]);
     }
     printf("\n");
   }
@@ -154,9 +154,11 @@ int main(int argc, char* argv[])
   //int matrixa[N][N] , matrixb[N][N] , matrixc[N][N] , gpuresult[N][N] , matrixd[N][N] ;
   printf("[%d, %d] * [%d, %d]\n", aW, aH, bW, aW);
   Matrix matrixa = InitMatrix(aW, aH);
-  printMatrix(&matrixa, 2, 2);
+  printf("matrixa\n");
+  printMatrix(&matrixa, 4, 4);
   Matrix matrixb = InitMatrix(bW, aW);
-  printMatrix(&matrixb, 2, 2);
+  printf("matrixb\n");
+  printMatrix(&matrixb, 4, 4);
   Matrix matrixc;
   Matrix gpuresult = InitMatrix(bW, aH);
 
@@ -168,14 +170,18 @@ int main(int argc, char* argv[])
   int start = clock();
   matrixc = MM(matrixa, matrixb);
   int finish = clock();
+  printf("\nmatrixc CPU\n");
   printMatrix(&matrixc, 4, 4);
   printf("cpu time(single thread)\t\t = %fs %d\n", (float)(finish - start) / CLOCKS_PER_SEC, finish - start);
 
   SYSTEM_INFO sysInfo;
   GetSystemInfo(&sysInfo);
   start = clock();
-  //matrixc = multiThreadsMM(matrixa, matrixb, sysInfo.dwNumberOfProcessors);
+  Matrix matrixd;
+  matrixd = multiThreadsMM(matrixa, matrixb, sysInfo.dwNumberOfProcessors);
   finish = clock();
+  printf("\nmatrixd CPU\n");
+  printMatrix(&matrixd, 4, 4);
   printf("cpu time(%4d threads)\t\t = %fs %d\n", sysInfo.dwNumberOfProcessors, (float)(finish - start) / CLOCKS_PER_SEC, finish - start);
 
   start = clock();
@@ -204,8 +210,9 @@ int main(int argc, char* argv[])
   //将数据从显存中复制出来
   cudaMemcpy(gpuresult.element, mc, sizeof(float) * gpuresult.width * gpuresult.height, cudaMemcpyDeviceToHost);
   finish = clock();
-  printf("gpu time(%4d CUDA Cores)\t = %fs %d\n", cudaCores, (float)(finish - start)/CLOCKS_PER_SEC, finish - start);
+  printf("\ngpuresult GPU\n");
   printMatrix(&gpuresult, 4, 4);
+  printf("gpu time(%4d CUDA Cores)\t = %fs %d\n", cudaCores, (float)(finish - start) / CLOCKS_PER_SEC, finish - start);
   float err = 0;
   for (int i = 0; i < gpuresult.width * gpuresult.height; i++)
   {
@@ -214,9 +221,9 @@ int main(int argc, char* argv[])
       //printf("ERROR");
     //}
     err += matrixc.element[i] - gpuresult.element[i];
-    printf("%f - %f = %f \n", matrixc.element[i], gpuresult.element[i], err);
+    //printf("%f - %f = %f \n", matrixc.element[i], gpuresult.element[i], err);
   }
-  printf("error: %f\n", err / (gpuresult.width * gpuresult.height));
+  printf("\nerror: %f\n", err / (gpuresult.width * gpuresult.height));
 
   cudaFree(ma);
   cudaFree(mb);
