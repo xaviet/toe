@@ -9,6 +9,7 @@ gpu time = 0.231000s 231
 
 */
 
+#include "helper_cuda.h"
 #include "stdio.h"
 #include "assert.h"
 #include "windows.h"
@@ -20,7 +21,7 @@ gpu time = 0.231000s 231
 #if __DEVICE_EMULATION__
 bool InitCUDA(void) { return true; }
 #else
-bool InitCUDA(void)
+int InitCUDA(void)
 {
   int count = 0;
   int i = 0;
@@ -29,8 +30,8 @@ bool InitCUDA(void)
     fprintf(stderr, "There is no device.\n");
     return false;
   }
+  cudaDeviceProp prop;
   for (i = 0; i < count; i++) {
-    cudaDeviceProp prop;
     if (cudaGetDeviceProperties(&prop, i) == cudaSuccess) {
       if (prop.major >= 1) {
         break;
@@ -43,16 +44,14 @@ bool InitCUDA(void)
   }
   cudaSetDevice(i);
   printf("CUDA initialized.\n");
-  cudaDeviceProp prop;
-  cudaGetDeviceProperties(&prop, i);
   printf("Device : \" %s \" \n\n", prop.name);
-  return true;
+  return(_ConvertSMVer2Cores(prop.major, prop.minor) * prop.multiProcessorCount);
 }
 #endif
 
-#define aW 512
-#define aH 512
-#define bW 512
+#define aW 2
+#define aH 2
+#define bW 2
 #define blocknum 32//32
 #define threadnum 256//256
 
@@ -60,14 +59,14 @@ typedef struct
 {
   int width;
   int height;
-  int *element;
+  float *element;
 }Matrix;
 Matrix InitMatrix(int w, int h)
 {
   Matrix t;
-  t.element = (int *)malloc(w * h * sizeof(int));
+  t.element = (float *)malloc(w * h * sizeof(float));
   for (int i = 0; i < w*h; i++)
-    t.element[i] = rand() % 10;
+    t.element[i] = (float)(rand()) / RAND_MAX; // 0 to RAND_MAX;
   t.width = w;
   t.height = h;
   return t;
@@ -75,7 +74,7 @@ Matrix InitMatrix(int w, int h)
 Matrix MM(Matrix a, Matrix b)
 {
   Matrix t;
-  t.element = (int *)malloc(a.height * b.width * sizeof(int));
+  t.element = (float *)malloc(a.height * b.width * sizeof(float));
   t.width = b.width;
   t.height = a.height;
   int x;
@@ -92,9 +91,36 @@ Matrix MM(Matrix a, Matrix b)
   }
   return t;
 }
+Matrix multiThreadsMM(Matrix matrixa, Matrix matrixb, DWORD dwNumberOfProcessors)
+{
+  Matrix t;
+  t.element = (float *)malloc(matrixa.height * matrixb.width * sizeof(float));
+  t.width = matrixb.width;
+  t.height = matrixa.height;
+  return t;
+}
+int printMatrix(Matrix* c, int h, int w)
+{
+  for (int i=0;i<c->height;i++)
+  {
+    if (i == h)
+    {
+      break;
+    }
+    for (int j = 0; j < c->width; j++)
+    {
+      if (j == w)
+      {
+        break;
+      }
+      printf("%6f, ", c->element[i*c->width + j]);
+    }
+    printf("\n");
+  }
+  return(0);
+}
 
-
-__global__ static void MatrixMul(int *ma, int *mb, int *mc, int *mp)
+__global__ static void MatrixMul(float *ma, float *mb, float *mc, int *mp)
 {
   int aw = mp[0];
   int bw = mp[2];
@@ -119,14 +145,18 @@ __global__ static void MatrixMul(int *ma, int *mb, int *mc, int *mp)
 
 int main(int argc, char* argv[])
 {
-  if (!InitCUDA()) {
+  srand(clock());
+  int cudaCores = 0;
+  if (!(cudaCores=InitCUDA())) {
     return 0;
   }
   //定义矩阵
   //int matrixa[N][N] , matrixb[N][N] , matrixc[N][N] , gpuresult[N][N] , matrixd[N][N] ;
   printf("[%d, %d] * [%d, %d]\n", aW, aH, bW, aW);
   Matrix matrixa = InitMatrix(aW, aH);
+  printMatrix(&matrixa, 2, 2);
   Matrix matrixb = InitMatrix(bW, aW);
+  printMatrix(&matrixb, 2, 2);
   Matrix matrixc;
   Matrix gpuresult = InitMatrix(bW, aH);
 
@@ -138,7 +168,15 @@ int main(int argc, char* argv[])
   int start = clock();
   matrixc = MM(matrixa, matrixb);
   int finish = clock();
-  printf("cpu time = %fs %d\n", (float)(finish - start) / CLOCKS_PER_SEC, finish - start);
+  printMatrix(&matrixc, 4, 4);
+  printf("cpu time(single thread)\t\t = %fs %d\n", (float)(finish - start) / CLOCKS_PER_SEC, finish - start);
+
+  SYSTEM_INFO sysInfo;
+  GetSystemInfo(&sysInfo);
+  start = clock();
+  matrixc = multiThreadsMM(matrixa, matrixb, sysInfo.dwNumberOfProcessors);
+  finish = clock();
+  printf("cpu time(%4d threads)\t\t = %fs %d\n", sysInfo.dwNumberOfProcessors, (float)(finish - start) / CLOCKS_PER_SEC, finish - start);
 
   start = clock();
   matrixprop[0] = matrixa.width;
@@ -149,30 +187,30 @@ int main(int argc, char* argv[])
   matrixprop[5] = matrixc.height;
 
   //申请显存
-  int *ma, *mb, *mc, *mp;
-  cudaMalloc((void**)&ma, sizeof(int) * matrixa.width * matrixa.height);
-  cudaMalloc((void**)&mb, sizeof(int) * matrixb.width * matrixb.height);
-  cudaMalloc((void**)&mc, sizeof(int) * matrixc.width * matrixc.height);
-  cudaMalloc((void**)&mp, sizeof(int) * 6);
+  float *ma, *mb, *mc, *mp;
+  cudaMalloc((void**)&ma, sizeof(float) * matrixa.width * matrixa.height);
+  cudaMalloc((void**)&mb, sizeof(float) * matrixb.width * matrixb.height);
+  cudaMalloc((void**)&mc, sizeof(float) * matrixc.width * matrixc.height);
+  cudaMalloc((void**)&mp, sizeof(float) * 6);
   //将数据复制到显存内
-  cudaMemcpy(ma, matrixa.element, sizeof(int) * matrixa.width * matrixa.height, cudaMemcpyHostToDevice);
-  cudaMemcpy(mb, matrixb.element, sizeof(int) * matrixb.width * matrixb.height, cudaMemcpyHostToDevice);
+  cudaMemcpy(ma, matrixa.element, sizeof(float) * matrixa.width * matrixa.height, cudaMemcpyHostToDevice);
+  cudaMemcpy(mb, matrixb.element, sizeof(float) * matrixb.width * matrixb.height, cudaMemcpyHostToDevice);
   cudaMemcpy(mp, matrixprop, sizeof(int) * 6, cudaMemcpyHostToDevice);
   //调用CUDA函数
   MatrixMul <<< blocknum, threadnum, 0 >>>(ma, mb, mc, mp);
   cudaThreadSynchronize();
   //cutilCheckError( cutStopTimer( timer2));
   //将数据从显存中复制出来
-  cudaMemcpy(gpuresult.element, mc, sizeof(int) * gpuresult.width * gpuresult.height, cudaMemcpyDeviceToHost);
+  cudaMemcpy(gpuresult.element, mc, sizeof(float) * gpuresult.width * gpuresult.height, cudaMemcpyDeviceToHost);
   finish = clock();
-  printf("gpu time = %fs %d\n", (float)(finish - start)/CLOCKS_PER_SEC, finish - start);
-
+  printf("gpu time(%4d CUDA Cores)\t = %fs %d\n", cudaCores, (float)(finish - start)/CLOCKS_PER_SEC, finish - start);
+  printMatrix(&gpuresult, 4, 4);
   for (int i = 0; i < gpuresult.width * gpuresult.height; i++)
   {
     //printf("%d -- %d\n",matrixc.element[ i ],gpuresult.element[ i ]);
     if (matrixc.element[i] != gpuresult.element[i])
     {
-      printf("ERROR");
+      //printf("ERROR");
     }
   }
 
