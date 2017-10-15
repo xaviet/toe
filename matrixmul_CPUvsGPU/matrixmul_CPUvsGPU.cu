@@ -49,11 +49,11 @@ int InitCUDA(void)
 }
 #endif
 
-#define aW 512
-#define aH 512
-#define bW 512
-#define blocknum 32 //32
-#define threadnum 256 //256
+#define aW 1024
+#define aH 1024
+#define bW 1024
+#define blocknum 16
+#define threadnum 1024
 
 typedef struct
 {
@@ -79,7 +79,7 @@ Matrix MM(Matrix a, Matrix b)
   t.height = a.height;
   int x;
   int y;
-  for (int i = 0; i < t.width * t.height; i++)
+  /*for (int i = 0; i < t.width * t.height; i++)
   {
     x = i / t.width * a.width;
     y = i - i / t.width * t.width;
@@ -88,7 +88,7 @@ Matrix MM(Matrix a, Matrix b)
     {
       t.element[i] += a.element[x + k] * b.element[y + b.width * k];
     }
-  }
+  }*/
   return t;
 }
 Matrix multiThreadsMM(Matrix matrixa, Matrix matrixb, DWORD dwNumberOfProcessors)
@@ -204,7 +204,7 @@ int main(int argc, char* argv[])
   cudaMemcpy(mb, matrixb.element, sizeof(float) * matrixb.width * matrixb.height, cudaMemcpyHostToDevice);
   cudaMemcpy(mp, matrixprop, sizeof(int) * 6, cudaMemcpyHostToDevice);
   //调用CUDA函数
-  MatrixMul <<< blocknum, threadnum, 0 >>>(ma, mb, mc, mp);
+  MatrixMul <<< blocknum, threadnum >>>(ma, mb, mc, mp);
   cudaThreadSynchronize();
   //cutilCheckError( cutStopTimer( timer2));
   //将数据从显存中复制出来
