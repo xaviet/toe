@@ -49,9 +49,9 @@ int InitCUDA(void)
 }
 #endif
 
-#define aW 2048
-#define aH 2048
-#define bW 2048
+#define aW 1024
+#define aH 1024
+#define bW 1024
 #define blocknum 32
 #define threadnum 1024
 
@@ -126,11 +126,13 @@ __global__ static void MatrixMul(float *ma, float *mb, float *mc, int *mp)
   int bw = mp[2];
   int cw = mp[4];
   int ch = mp[5];
+  int tBlock = mp[6];
+  int tThread = mp[7];
   const int bid = blockIdx.x;
   const int tid = threadIdx.x;
   int i, x, y;
 
-  for (i = bid * threadnum + tid; i < cw * ch; i += threadnum * blocknum)
+  for (i = bid * tThread + tid; i < cw * ch; i += tThread * tBlock)
   {
     x = i / cw * aw;
     y = i - i / cw * cw;
@@ -162,7 +164,7 @@ int main(int argc, char* argv[])
   Matrix matrixc;
   Matrix gpuresult = InitMatrix(bW, aH);
 
-  int matrixprop[6];
+  int matrixprop[8];
 
   //为CPU运算计时
 
@@ -206,10 +208,12 @@ int main(int argc, char* argv[])
       cudaMalloc((void**)&ma, sizeof(float) * matrixa.width * matrixa.height);
       cudaMalloc((void**)&mb, sizeof(float) * matrixb.width * matrixb.height);
       cudaMalloc((void**)&mc, sizeof(float) * matrixc.width * matrixc.height);
-      cudaMalloc((void**)&mp, sizeof(int) * 6);
+      cudaMalloc((void**)&mp, sizeof(int) * 8);
       //将数据复制到显存内
       cudaMemcpy(ma, matrixa.element, sizeof(float) * matrixa.width * matrixa.height, cudaMemcpyHostToDevice);
       cudaMemcpy(mb, matrixb.element, sizeof(float) * matrixb.width * matrixb.height, cudaMemcpyHostToDevice);
+      matrixprop[6] = tBlock;
+      matrixprop[7] = tThread;
       cudaMemcpy(mp, matrixprop, sizeof(int) * 6, cudaMemcpyHostToDevice);
       //调用CUDA函数
       MatrixMul << < tBlock, tThread >> > (ma, mb, mc, mp);
@@ -221,7 +225,7 @@ int main(int argc, char* argv[])
       //printf("\ngpuresult GPU Block=%d\n", tBlock);
       //printMatrix(&gpuresult, 4, 4);
       //printf("Block=%4d Thread=%4d Result=%f gpu time(%4d CUDA Cores)\t = %fs %4d\n", tBlock, tThread, gpuresult.element[0], cudaCores, (float)(finish - start) / CLOCKS_PER_SEC, finish - start);
-      printf("%4d,%4d,\t%4.4f,%4d\n", tBlock, tThread, gpuresult.element[0], finish - start);
+      printf("%4d,%4d,\t%4.4f,\t%4d\n", tBlock, tThread, gpuresult.element[0], finish - start);
       float err = 0;
       for (int i = 0; i < gpuresult.width * gpuresult.height; i++)
       {
