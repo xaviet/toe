@@ -49,10 +49,10 @@ int InitCUDA(void)
 }
 #endif
 
-#define aW 1024
-#define aH 1024
-#define bW 1024
-#define blocknum 16
+#define aW 2048
+#define aH 2048
+#define bW 2048
+#define blocknum 32
 #define threadnum 1024
 
 typedef struct
@@ -77,9 +77,9 @@ Matrix MM(Matrix a, Matrix b)
   t.element = (float *)malloc(a.height * b.width * sizeof(float));
   t.width = b.width;
   t.height = a.height;
-  int x;
+  /*int x;
   int y;
-  /*for (int i = 0; i < t.width * t.height; i++)
+  for (int i = 0; i < t.width * t.height; i++)
   {
     x = i / t.width * a.width;
     y = i - i / t.width * t.width;
@@ -147,7 +147,7 @@ int main(int argc, char* argv[])
 {
   srand(clock());
   int cudaCores = 0;
-  if (!(cudaCores=InitCUDA())) {
+  if (!(cudaCores = InitCUDA())) {
     return 0;
   }
   //定义矩阵
@@ -195,41 +195,51 @@ int main(int argc, char* argv[])
   //申请显存
   float *ma, *mb, *mc;
   int *mp;
-  cudaMalloc((void**)&ma, sizeof(float) * matrixa.width * matrixa.height);
-  cudaMalloc((void**)&mb, sizeof(float) * matrixb.width * matrixb.height);
-  cudaMalloc((void**)&mc, sizeof(float) * matrixc.width * matrixc.height);
-  cudaMalloc((void**)&mp, sizeof(int) * 6);
-  //将数据复制到显存内
-  cudaMemcpy(ma, matrixa.element, sizeof(float) * matrixa.width * matrixa.height, cudaMemcpyHostToDevice);
-  cudaMemcpy(mb, matrixb.element, sizeof(float) * matrixb.width * matrixb.height, cudaMemcpyHostToDevice);
-  cudaMemcpy(mp, matrixprop, sizeof(int) * 6, cudaMemcpyHostToDevice);
-  //调用CUDA函数
-  MatrixMul <<< blocknum, threadnum >>>(ma, mb, mc, mp);
-  cudaThreadSynchronize();
-  //cutilCheckError( cutStopTimer( timer2));
-  //将数据从显存中复制出来
-  cudaMemcpy(gpuresult.element, mc, sizeof(float) * gpuresult.width * gpuresult.height, cudaMemcpyDeviceToHost);
-  finish = clock();
-  printf("\ngpuresult GPU\n");
-  printMatrix(&gpuresult, 4, 4);
-  printf("gpu time(%4d CUDA Cores)\t = %fs %d\n", cudaCores, (float)(finish - start) / CLOCKS_PER_SEC, finish - start);
-  float err = 0;
-  for (int i = 0; i < gpuresult.width * gpuresult.height; i++)
+  int tBlock = 1;
+  int tThread = 1;
+  for(tBlock = 1; tBlock <= 1024; tBlock *= 2)
   {
-    //if (matrixc.element[i] != gpuresult.element[i])
-    //{
-      //printf("ERROR");
-    //}
-    err += matrixc.element[i] - gpuresult.element[i];
-    //printf("%f - %f = %f \n", matrixc.element[i], gpuresult.element[i], err);
+    for (tThread = 1; tThread <= 1024; tThread *= 2)
+    {
+      start = clock();
+      gpuresult = InitMatrix(bW, aH);
+      cudaMalloc((void**)&ma, sizeof(float) * matrixa.width * matrixa.height);
+      cudaMalloc((void**)&mb, sizeof(float) * matrixb.width * matrixb.height);
+      cudaMalloc((void**)&mc, sizeof(float) * matrixc.width * matrixc.height);
+      cudaMalloc((void**)&mp, sizeof(int) * 6);
+      //将数据复制到显存内
+      cudaMemcpy(ma, matrixa.element, sizeof(float) * matrixa.width * matrixa.height, cudaMemcpyHostToDevice);
+      cudaMemcpy(mb, matrixb.element, sizeof(float) * matrixb.width * matrixb.height, cudaMemcpyHostToDevice);
+      cudaMemcpy(mp, matrixprop, sizeof(int) * 6, cudaMemcpyHostToDevice);
+      //调用CUDA函数
+      MatrixMul << < tBlock, tThread >> > (ma, mb, mc, mp);
+      cudaThreadSynchronize();
+      //cutilCheckError( cutStopTimer( timer2));
+      //将数据从显存中复制出来
+      cudaMemcpy(gpuresult.element, mc, sizeof(float) * gpuresult.width * gpuresult.height, cudaMemcpyDeviceToHost);
+      finish = clock();
+      //printf("\ngpuresult GPU Block=%d\n", tBlock);
+      //printMatrix(&gpuresult, 4, 4);
+      //printf("Block=%4d Thread=%4d Result=%f gpu time(%4d CUDA Cores)\t = %fs %4d\n", tBlock, tThread, gpuresult.element[0], cudaCores, (float)(finish - start) / CLOCKS_PER_SEC, finish - start);
+      printf("%4d,%4d,\t%4.4f,%4d\n", tBlock, tThread, gpuresult.element[0], finish - start);
+      float err = 0;
+      for (int i = 0; i < gpuresult.width * gpuresult.height; i++)
+      {
+        //if (matrixc.element[i] != gpuresult.element[i])
+        //{
+          //printf("ERROR");
+        //}
+        err += matrixc.element[i] - gpuresult.element[i];
+        //printf("%f - %f = %f \n", matrixc.element[i], gpuresult.element[i], err);
+      }
+      //printf("\nerror: %f\n", err / (gpuresult.width * gpuresult.height));
+
+      cudaFree(ma);
+      cudaFree(mb);
+      cudaFree(mc);
+      cudaFree(mp);
+    }
   }
-  printf("\nerror: %f\n", err / (gpuresult.width * gpuresult.height));
-
-  cudaFree(ma);
-  cudaFree(mb);
-  cudaFree(mc);
-  cudaFree(mp);
-
   printf("\nPress any key to exit.\n");
   getchar();
 
