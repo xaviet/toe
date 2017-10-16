@@ -177,6 +177,7 @@ def cudaPer3D(perInfo):
     y.append(float(ely))
     z.append(float(elz))
     r.append(float(elr))
+  print(sorted(z)[0],sorted(z)[-1])
   ax.scatter(x,y,z,s=10, c=r, marker='o')
   plt.show() 
 
