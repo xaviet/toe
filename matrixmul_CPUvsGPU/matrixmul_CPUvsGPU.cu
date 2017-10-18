@@ -44,14 +44,14 @@ int InitCUDA(void)
   }
   cudaSetDevice(i);
   printf("CUDA initialized.\n");
-  printf("Device : \" %s \" \n\n", prop.name);
+  printf("Device : %s\n", prop.name);
   return(_ConvertSMVer2Cores(prop.major, prop.minor) * prop.multiProcessorCount);
 }
 #endif
 
-#define aW 1024
-#define aH 1024
-#define bW 1024
+#define aW 2048
+#define aH 256
+#define bW 256
 #define blocknum 32
 #define threadnum 1024
 
@@ -145,13 +145,14 @@ __global__ static void MatrixMul(float *ma, float *mb, float *mc, int *mp)
 }
 
 
-int main(int argc, char* argv[])
+int matrixmul_CPUvsGPU(void)
 {
   srand(clock());
   int cudaCores = 0;
   if (!(cudaCores = InitCUDA())) {
     return 0;
   }
+  printf("Found cudaCores %d\n", cudaCores);
   //定义矩阵
   //int matrixa[N][N] , matrixb[N][N] , matrixc[N][N] , gpuresult[N][N] , matrixd[N][N] ;
   printf("[%d, %d] * [%d, %d]\n", aW, aH, bW, aW);
@@ -164,7 +165,7 @@ int main(int argc, char* argv[])
   Matrix matrixc;
   Matrix gpuresult = InitMatrix(bW, aH);
 
-  int matrixprop[8];
+  int matrixprop[10];
 
   //为CPU运算计时
 
@@ -199,7 +200,7 @@ int main(int argc, char* argv[])
   int *mp;
   int tBlock = 1;
   int tThread = 1;
-  for(tBlock = 1; tBlock <= 1024; tBlock *= 2)
+  for (tBlock = 1; tBlock <= 1024; tBlock *= 2)
   {
     for (tThread = 1; tThread <= 1024; tThread *= 2)
     {
@@ -208,7 +209,7 @@ int main(int argc, char* argv[])
       cudaMalloc((void**)&ma, sizeof(float) * matrixa.width * matrixa.height);
       cudaMalloc((void**)&mb, sizeof(float) * matrixb.width * matrixb.height);
       cudaMalloc((void**)&mc, sizeof(float) * matrixc.width * matrixc.height);
-      cudaMalloc((void**)&mp, sizeof(int) * 8);
+      cudaMalloc((void**)&mp, sizeof(int) * 10);
       //将数据复制到显存内
       cudaMemcpy(ma, matrixa.element, sizeof(float) * matrixa.width * matrixa.height, cudaMemcpyHostToDevice);
       cudaMemcpy(mb, matrixb.element, sizeof(float) * matrixb.width * matrixb.height, cudaMemcpyHostToDevice);
@@ -244,8 +245,108 @@ int main(int argc, char* argv[])
       cudaFree(mp);
     }
   }
-  printf("\nPress any key to exit.\n");
-  getchar();
 
   return 0;
+}
+
+__global__ void vectorAdd(float* ga, float* gb, float* gc, int n)
+{
+  // threadIdx.x means current thread ID in this block
+  // blockIdx.x means current block ID
+  // blockDim.x means threads per block
+  int tIndex = threadIdx.x + blockIdx.x * blockDim.x;
+  if (tIndex < n)
+  {
+    gc[tIndex] = ga[tIndex] + gb[tIndex];
+  }
+}
+
+int initFloatMatrix(float* ma, int mw, int mh)
+{
+  for (int i = 0; i < mw*mh; i++)
+  {
+    ma[i] = (float)(rand()) / RAND_MAX; // 0 to RAND_MAX;
+  }
+  return(0);
+}
+
+int printFloatMatrix(float* ma, int mw, int mh)
+{
+  for (int i = 0; i < mh; i++)
+  {
+    if (i >= 5)
+    {
+      break;
+    }
+    printf("\n");
+    for (int j = 0; j < mw; j++)
+    {
+      if (j >= 5)
+      {
+        break;
+      }
+      printf("\t%4.8f\t", ma[i*mw + j]);
+    }
+  }
+  printf("\n");
+  return(0);
+}
+
+int ex(int mw, int mh)
+{
+  srand(clock());
+  //int cudaCores = 0;
+  //if (!(cudaCores = InitCUDA())) 
+  //{
+  //  printf("GPU Fail");
+  //  return 0;
+  //}
+  //printf("Found cudaCores %d\n", cudaCores);
+  float *a, *b, *c, *ga, *gb, *gc;
+  int size = mw * mh * sizeof(float);
+  cudaMalloc((void **)&ga, size);
+  cudaMalloc((void **)&gb, size);
+  cudaMalloc((void **)&gc, size);
+  a = (float *)malloc(size); 
+  initFloatMatrix(a, mw, mh);
+  b = (float *)malloc(size); 
+  initFloatMatrix(b, mw, mh);
+  c = (float *)malloc(size);
+  initFloatMatrix(c, mw, mh);
+  cudaMemcpy(ga, a, size, cudaMemcpyHostToDevice);
+  cudaMemcpy(gb, b, size, cudaMemcpyHostToDevice);
+  //vectorAdd << < mw * mh, 1 >> > (ga, gb, gc);
+  int start = clock();
+  vectorAdd << < mw, mh >> > (ga, gb, gc, mw * mh);
+  int stop = clock();
+  cudaMemcpy(c, gc, size, cudaMemcpyDeviceToHost);
+  printFloatMatrix(a, mw, mh);
+  printFloatMatrix(b, mw, mh);
+  printFloatMatrix(c, mw, mh);
+  printf("spent time: %8d\n",stop-start);
+  float sumA = 0;
+  float sumB = 0;
+  float sumC = 0;
+  float sumCPU = 0;
+  for (int i = 0; i < (mw*mh); i++)
+  {
+    sumA += a[i];
+    sumB += b[i];
+    sumCPU += a[i] + b[i];
+    sumC += c[i];
+  }
+  printf("CPU: %4.8f\nGPU: %4.8f\n", sumCPU, sumC);
+  printf("%4.8f + %4.8f = %4.8f\n", sumA, sumB, sumC);
+  free(a); free(b); free(c);
+  cudaFree(ga); cudaFree(gb); cudaFree(gc);
+  return(0);
+}
+
+int main(int argc, char* argv[])
+{
+  //matrixmul_CPUvsGPU();
+  ex(32, 1024);
+  printf("\nPress any key to exit.\n");
+  getchar();
+  return(0);
 }
