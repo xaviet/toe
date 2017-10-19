@@ -253,8 +253,9 @@ __global__ void vectorAdd(float* ga, float* gb, float* gc, int n)
 {
   // threadIdx.x means current thread ID in this block
   // blockIdx.x means current block ID
-  // blockDim.x means threads per block
-  int tIndex = threadIdx.x + blockIdx.x * blockDim.x;
+  // blockDim.x means threads[x,y,z] per block
+  // gridDim.x means blocks[x,y,z] per grid
+  int tIndex = threadIdx.x + threadIdx.y * blockDim.x + blockDim.x * blockDim.y* (blockIdx.x + blockIdx.y * gridDim.x);
   if (tIndex < n)
   {
     gc[tIndex] = ga[tIndex] + gb[tIndex];
@@ -315,9 +316,10 @@ int ex(int mw, int mh)
   initFloatMatrix(c, mw, mh);
   cudaMemcpy(ga, a, size, cudaMemcpyHostToDevice);
   cudaMemcpy(gb, b, size, cudaMemcpyHostToDevice);
-  //vectorAdd << < mw * mh, 1 >> > (ga, gb, gc);
   int start = clock();
-  vectorAdd << < mw, mh >> > (ga, gb, gc, mw * mh);
+  dim3 blocks(65535, 65535, 1);
+  dim3 threads(mw, mh, 1);
+  vectorAdd << < blocks, threads >> > (ga, gb, gc, mw * mh);
   int stop = clock();
   cudaMemcpy(c, gc, size, cudaMemcpyDeviceToHost);
   printFloatMatrix(a, mw, mh);
@@ -335,8 +337,8 @@ int ex(int mw, int mh)
     sumCPU += a[i] + b[i];
     sumC += c[i];
   }
-  printf("CPU: %4.8f\nGPU: %4.8f\n", sumCPU, sumC);
-  printf("%4.8f + %4.8f = %4.8f\n", sumA, sumB, sumC);
+  printf("%4.8f + %4.8f = \n", sumA, sumB);
+  printf("\t\tCPU: %4.8f\n\t\tGPU: %4.8f\n", sumCPU, sumC);
   free(a); free(b); free(c);
   cudaFree(ga); cudaFree(gb); cudaFree(gc);
   return(0);
@@ -345,7 +347,7 @@ int ex(int mw, int mh)
 int main(int argc, char* argv[])
 {
   //matrixmul_CPUvsGPU();
-  ex(32, 1024);
+  ex(5, 5);
   printf("\nPress any key to exit.\n");
   getchar();
   return(0);
