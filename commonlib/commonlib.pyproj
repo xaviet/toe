@@ -35,6 +35,9 @@
     <Compile Include="pydifflib.py">
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="routelib.py">
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Include="tensorflowlib.py" />
     <Compile Include="commonlib.py" />
     <Compile Include="maillib.py" />
