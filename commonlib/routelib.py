@@ -38,7 +38,11 @@ def startClean(pa, x, y, steps, route):
   #print('start...', [x, y], steps)
   #commonlib.arrayPrintFormat(ta)
   if(steps == 0):
-    print(route)
+    #print(route)
+    c = 10
+    for el0 in route:
+      ta[el0[0], el0[1]] = c
+      c += 1
     commonlib.arrayPrintFormat(ta)
     #print('startClean return True')
     pathFlag = True
