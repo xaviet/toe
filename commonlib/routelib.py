@@ -39,10 +39,12 @@ def startClean(pa, x, y, steps, route):
   #commonlib.arrayPrintFormat(ta)
   if(steps == 0):
     #print(route)
-    c = 10
+    c = 2
     for el0 in route:
-      ta[el0[0], el0[1]] = c
+      ta[el0[0]][el0[1]] = c
       c += 1
+      if(c > 9):
+        c = 3
     commonlib.arrayPrintFormat(ta)
     #print('startClean return True')
     pathFlag = True
@@ -74,11 +76,11 @@ def cleanRoom():
   pa = \
   [\
     [1, 1, 1, 1, 1, 1, 1], \
-    [1, 0, 0, 0, 0, 1, 1], \
+    [1, 0, 0, 1, 1, 1, 1], \
+    [1, 0, 1, 0, 0, 0, 1], \
     [1, 0, 0, 0, 0, 0, 1], \
-    [1, 0, 0, 0, 0, 0, 1], \
-    [1, 0, 0, 1, 0, 0, 1], \
-    [1, 1, 0, 0, 0, 1, 1], \
+    [1, 1, 0, 0, 0, 0, 1], \
+    [1, 1, 0, 0, 0, 0, 1], \
     [1, 1, 1, 1, 1, 1, 1], \
    ]
   #commonlib.arrayPrintFormat(pa)
