@@ -320,6 +320,7 @@ int ex(int mw, int mh)
   dim3 blocks(65535, 65535, 1);
   dim3 threads(mw, mh, 1);
   vectorAdd << < blocks, threads >> > (ga, gb, gc, mw * mh);
+  cudaDeviceSynchronize();
   int stop = clock();
   cudaMemcpy(c, gc, size, cudaMemcpyDeviceToHost);
   printFloatMatrix(a, mw, mh);

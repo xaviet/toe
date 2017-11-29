@@ -177,6 +177,14 @@ def test():
   a, p = floydAlgorithm(a, p, n)
   print(a, p)
 
+def arrayPrintFormat(array):
+  if(type(array) == list and type(array[0]) == list):
+    for el0 in array:
+        arrayPrintFormat(el0)
+  else:
+    print(array)
+
 
 if (__name__ == '__main__'):
   dispDataList([1,3,4,2,45,5,12,1,2,44,33,22,0,99])
+  arrayPrintFormat([[[1,5],[2,6]],[[[3,7],[4,8]]]])
