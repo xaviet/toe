@@ -23,21 +23,17 @@ def sqliteOpt(v_db, v_opt):
   return (t_rtArray)
 
 
-def sqliteOptBatch(v_db, v_opt):
+def sqliteOptBatch(v_db, v_optString, v_paramentList):
   '''
     sqlite3 batch operate
   '''
   t_dbCon = sqlite3.connect(v_db)
-  t_dbCur = t_dbCon.cursor()
-  for t_el in v_opt:
-    t_dbCur.execute(t_el)
-  t_dbCon.commit()
-  t_dbCur.close()
+  t_dbCon.executemany(v_optString, v_paramentList)
   t_dbCon.close()
   return (0)
 
 
-class sqliteMemory():
+class sqliteInMemory():
   def __init__(self):
     self.dbCon = sqlite3.connect(':memory:')
 
@@ -49,12 +45,8 @@ class sqliteMemory():
     cur.close()
     return (rt)
 
-  def batch(self, optList):
-    cur = self.dbCon.cursor()
-    for el in optList:
-      cur.execute(el)
-    self.dbCon.commit()
-    cur.close()
+  def batch(self, optString, paramentList):
+    self.dbCon.executemany(optString, paramentList)
     return (0)
 
   def closeDb(self):
@@ -62,13 +54,14 @@ class sqliteMemory():
 
 
 def test():
-  md = sqliteMemory()
+  md = sqliteInMemory()
   md.opt('create table t(id int)')
   md.opt('insert into t(id) values(11)')
   print(md.opt('select * from t')[0])
-  md.batch(('insert into t(id) values(211)',
-            'insert into t(id) values(1211)',
-            'insert into t(id) values(11211)'))
+  pList = ['1', '2', '3', '4', '5', '6']
+  md.batch('insert into t(id) values(?)', pList)
+  pList = [('1'), ('2'), ('3'), ('4'), ('5'), ('6')]
+  md.batch('insert into t(id) values(?)', pList)
   print(md.opt('select * from t'))
   md.closeDb()
 
