@@ -29,11 +29,10 @@ long_line_column=72
 
 [files]
 current_page=0
-FILE_NAME_0=655;Python;0;EUTF-8;0;1;1;%2Fhome%2Fpv%2FDocuments%2Ftoe%2Fcommonlib%2Fex.py;0;2
-FILE_NAME_1=404;Python;0;EUTF-8;0;1;1;%2Fhome%2Fpv%2FDocuments%2Ftoe%2Fcommonlib%2Fmtpltlib.py;0;2
+FILE_NAME_0=621;Python;0;EUTF-8;0;1;1;%2Fhome%2Fpv%2Fcode%2Ftoe%2Fcommonlib%2Fseleniumlib.py;0;2
 
 [VTE]
-last_dir=/home/pv/Documents/toe/commonlib
+last_dir=/home/pv/code/toe/commonlib
 
 [prjorg]
 source_patterns=*.c;*.C;*.cpp;*.cxx;*.c++;*.cc;*.m;
